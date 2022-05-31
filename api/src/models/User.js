@@ -3,27 +3,19 @@ const { v4: uuidv4 } = require("uuid");
 
 module.exports = (sequelize) => {
   sequelize
-    .define("transaction", {
+    .define("user", {
       id: {
         type: DataTypes.UUID,
         primaryKey: true,
       },
-      type: {
+      name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      concept: {
+      email: {
         type: DataTypes.STRING,
-        allowNull: false,
-      },
-      amount: {
-        type: DataTypes.DECIMAL,
-        allowNull: false,
-      },
-      date: {
-        type: DataTypes.DATE,
         allowNull: false,
       },
     })
-    .beforeCreate((transaction) => (transaction.id = uuidv4()));
+    .beforeCreate((user) => (user.id = uuidv4()));
 };

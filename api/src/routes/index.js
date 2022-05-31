@@ -11,4 +11,5 @@ router.get("/idcuenta", (req, res) => {
   const variable = req.body;
   res.send(variable);
 });
+
 module.exports = router;
