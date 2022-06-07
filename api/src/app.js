@@ -2,6 +2,9 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 const routes = require("./routes/index.js");
+const transactionRoutes = require("./routes/Transaction.routes.js");
+const categoryRoutes = require("./routes/Category.routes.js");
+const userRoutes = require("./routes/User.routes.js");
 
 require("./db.js");
 
@@ -23,6 +26,9 @@ server.use((req, res, next) => {
 });
 
 server.use("/", routes);
+server.use("/transaction", transactionRoutes);
+server.use("/category", categoryRoutes);
+server.use("/user", userRoutes);
 
 // Error catching endware.
 server.use((err, req, res, next) => {

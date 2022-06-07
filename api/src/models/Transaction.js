@@ -1,5 +1,6 @@
 const { DataTypes, Sequelize } = require("sequelize");
 const { v4: uuidv4 } = require("uuid");
+const TRANSACTION_STATUS = require("../enum/Transaction.enum");
 
 module.exports = (sequelize) => {
   sequelize
@@ -21,8 +22,12 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       date: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
         allowNull: false,
+      },
+      status: {
+        type: DataTypes.ENUM(...Object.values(TRANSACTION_STATUS)),
+        allowNull: true,
       },
     })
     .beforeCreate((transaction) => (transaction.id = uuidv4()));
