@@ -18,19 +18,19 @@ const WelcomeScreen = () => {
             alignItems: "center",
           }}
         >
-          <Typography variant="h4" color="inherit">
+          <Typography variant="h4" color="text.primary">
             Welcome to pBudgetApp!{" "}
           </Typography>
-          <Typography variant="h6" color="text.secondary">
+          <Typography variant="h6" color="text.blueGrey.600">
             Organize your finances and keep control over your pBudgetApp{" "}
           </Typography>
-          <Typography variant="h6" color="text.secondary">
+          <Typography variant="h6" color="text.blueGrey.600">
             - Choose you categories for expenses
           </Typography>
-          <Typography variant="h6" color="text.secondary">
+          <Typography variant="h6" color="text.blueGrey.600">
             - Add your incomes
           </Typography>
-          <Typography variant="h6" color="text.secondary">
+          <Typography variant="h6" color="text.blueGrey.600">
             - See visual graphs of your spending habits and control your money
           </Typography>
           <Button

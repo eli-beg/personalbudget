@@ -1,19 +1,25 @@
-import { AppBar, Grid, Typography } from "@mui/material";
-import React from "react";
-import NavBar from "../Components/NavBar";
+import { Box } from "@mui/material";
+import React, { useState } from "react";
+import Dashboard from "../Components/Dashboard/Dashboard";
+import HeaderBar from "../Components/Header/HeaderBar";
+import SideBar from "../Components/Sidebar/SideBar";
 
 const Home = () => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+    console.log("ḧolisss");
+  };
+
   return (
-    <div>
-      <Grid container direction="row">
-        <Grid item xs={1}>
-          <NavBar />
-        </Grid>
-        <Grid item xs={11}>
-          <Typography>Hola home</Typography>
-        </Grid>
-      </Grid>
-    </div>
+    <Box sx={{ display: "flex" }}>
+      <HeaderBar handleDrawerToggle={handleDrawerToggle} />
+      <SideBar
+        handleDrawerToggle={handleDrawerToggle}
+        mobileOpen={mobileOpen}
+      />
+      <Dashboard />
+    </Box>
   );
 };
 
