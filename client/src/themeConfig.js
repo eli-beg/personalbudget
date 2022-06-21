@@ -12,6 +12,10 @@ const theme = createTheme({
     },
   },
   boxSizing: "border-box",
+  h2: {
+    fontSize: "0.975rem",
+    fontWeight: 500,
+  },
   h5: {
     fontSize: "0.875rem",
     color: "#2596be",

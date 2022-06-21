@@ -8,7 +8,6 @@ const Home = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
-    console.log("ḧolisss");
   };
 
   return (

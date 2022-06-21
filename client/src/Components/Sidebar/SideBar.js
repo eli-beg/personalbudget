@@ -8,8 +8,8 @@ const SideBar = ({ handleDrawerToggle, mobileOpen }) => {
   return (
     <Box
       sx={{
-        width: { sm: drawerWidth },
-        flexShrink: { sm: 0 },
+        width: { md: drawerWidth },
+        flexShrink: { md: 0 },
       }}
     >
       <Drawer
@@ -35,7 +35,7 @@ const SideBar = ({ handleDrawerToggle, mobileOpen }) => {
       <Drawer
         variant="permanent"
         sx={{
-          display: { xs: "none", sm: "block" },
+          display: { xs: "none", sm: "none", md: "block" },
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
             width: drawerWidth,

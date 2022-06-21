@@ -15,7 +15,7 @@ const HeaderBar = ({ handleDrawerToggle }) => {
         elevation={0}
         sx={{
           width: {
-            sm: `calc(100% - ${drawerWidth}px)`,
+            md: `calc(100% - ${drawerWidth}px)`,
             height: "60px",
             backgroundColor: "white",
             boxShadow: "none",
@@ -26,7 +26,7 @@ const HeaderBar = ({ handleDrawerToggle }) => {
           <IconButton
             edge="start"
             onClick={() => handleDrawerToggle()}
-            sx={{ display: { sm: "none" } }}
+            sx={{ display: { md: "none" } }}
           >
             <Menu />
           </IconButton>
