@@ -7,8 +7,11 @@ const createCategory = async (req, res) => {
     const newCategory = await Category.create({
       name: name,
       status: "active",
-      userId: userId,
+      userId: null,
     });
+    if (userId) {
+      await newCategory.setUser(userId);
+    }
     if (newCategory) {
       return res.status(200).send({
         ok: true,
@@ -29,7 +32,7 @@ const getCategories = async (req, res) => {
     const getCategories = await Category.findAll({
       where: {
         status: "active",
-        userId: userId,
+        userId: null,
       },
     });
     if (getCategories) {

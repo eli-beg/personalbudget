@@ -2,7 +2,7 @@ const express = require("express");
 const {
   createTransaction,
   allTransactions,
-  updateExpenseTransaction,
+  updateTransaction,
   deleteTransaction,
 } = require("../Controllers/Transaction.Controllers.js");
 
@@ -12,8 +12,8 @@ transactionRoutes.post("/create-transaction", createTransaction);
 
 transactionRoutes.get("/all-transactions", allTransactions);
 
-transactionRoutes.put("/update-expense", updateExpenseTransaction);
+transactionRoutes.put("/update-transaction", updateTransaction);
 
-transactionRoutes.delete("/delete-transaction", deleteTransaction);
+transactionRoutes.put("/delete-transaction", deleteTransaction);
 
 module.exports = transactionRoutes;

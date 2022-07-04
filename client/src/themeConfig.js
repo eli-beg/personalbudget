@@ -12,6 +12,8 @@ const theme = createTheme({
     },
   },
   boxSizing: "border-box",
+  margin: 0,
+  padding: 0,
   h2: {
     fontSize: "0.975rem",
     fontWeight: 500,
@@ -52,6 +54,20 @@ const theme = createTheme({
           "&:hover": {
             color: "#4f46bb",
           },
+        },
+      },
+    },
+    MuiBackdrop: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "rgba(0,0,0,0.2)",
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          boxShadow: "none",
         },
       },
     },

@@ -1,26 +1,32 @@
 import React from "react";
-import { Box, Typography, Grid } from "@mui/material";
+import { Typography, Grid, IconButton } from "@mui/material";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import budget from "../../images/budget.png";
 
-const BalanceCard = () => {
+const BalanceCard = ({ allTransactionsInfoBalance }) => {
   return (
-    <Box
+    <Grid
+      container
+      direction="row"
       sx={{
         height: "100%",
-        backgroundColor: "#0097a7",
-        borderRadius: "10px",
+        width: "100%",
       }}
     >
       <Grid
         container
+        item
         direction="column"
         justifyContent="flex-end"
-        sx={{ height: "100%" }}
-        xs={12}
-        ml={2}
+        alignItems="center"
+        xs={6}
       >
         <Grid item>
           <Typography variant="h3" color="text.blueGrey.50">
-            Monto
+            $
+            {allTransactionsInfoBalance
+              ? allTransactionsInfoBalance.finalBalance
+              : null}
           </Typography>
         </Grid>
         <Grid item mb={4}>
@@ -29,7 +35,35 @@ const BalanceCard = () => {
           </Typography>
         </Grid>
       </Grid>
-    </Box>
+      <Grid container item direction="row" xs={6} sm={6}>
+        <Grid
+          container
+          direction="row"
+          justifyContent="flex-end"
+          alignItems="flex-start"
+        >
+          <IconButton sx={{ color: "white" }}>
+            <MoreVertIcon />
+          </IconButton>
+        </Grid>
+        <Grid
+          container
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Grid
+            item
+            sx={{
+              backgroundImage: `url(${budget})`,
+              backgroundSize: "cover",
+              width: "100px",
+              height: "100px",
+            }}
+          />
+        </Grid>
+      </Grid>
+    </Grid>
   );
 };
 

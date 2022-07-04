@@ -1,26 +1,31 @@
 import React from "react";
-import { Box, Typography, Grid } from "@mui/material";
+import { Typography, Grid, IconButton } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import money from "../../images/money-bag.png";
 
-const IncomesCard = () => {
+const IncomesCard = ({ allTransactionsInfoBalance }) => {
   return (
-    <Box
+    <Grid
+      container
+      direction="row"
       sx={{
         height: "100%",
-        backgroundColor: "#536dfe",
-        borderRadius: "10px",
+        width: "100%",
       }}
     >
       <Grid
         container
         direction="column"
         justifyContent="flex-end"
-        sx={{ height: "100%" }}
-        xs={12}
-        ml={2}
+        alignItems="center"
+        xs={6}
       >
         <Grid item>
           <Typography variant="h3" color="text.blueGrey.50">
-            Monto
+            $
+            {allTransactionsInfoBalance
+              ? allTransactionsInfoBalance.sumOfIncomes
+              : null}
           </Typography>
         </Grid>
         <Grid item mb={4}>
@@ -29,7 +34,35 @@ const IncomesCard = () => {
           </Typography>
         </Grid>
       </Grid>
-    </Box>
+      <Grid container direction="row" xs={6}>
+        <Grid
+          container
+          direction="row"
+          justifyContent="flex-end"
+          alignItems="flex-start"
+        >
+          <IconButton sx={{ color: "white" }}>
+            <AddIcon />
+          </IconButton>
+        </Grid>
+        <Grid
+          container
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Grid
+            item
+            sx={{
+              backgroundImage: `url(${money})`,
+              backgroundSize: "cover",
+              width: "100px",
+              height: "100px",
+            }}
+          />
+        </Grid>
+      </Grid>
+    </Grid>
   );
 };
 

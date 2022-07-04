@@ -11,10 +11,11 @@ const createTransaction = async (req, res) => {
       amount: amount,
       date: date,
       status: "active",
-      userId: userId,
-      categoryId: categoryId,
     });
     if (newTransaction) {
+      categoryId && (await newTransaction.setCategory(categoryId));
+      userId && (await newTransaction.setUser(userId));
+
       return res.status(200).send({
         ok: true,
         transaction: newTransaction,
@@ -69,15 +70,16 @@ const allTransactions = async (req, res) => {
   }
 };
 
-const updateExpenseTransaction = async (req, res) => {
-  const { id, concept, amount, date, userId } = req.body;
+const updateTransaction = async (req, res) => {
+  const { id, concept, amount, date, userId, categoryId } = req.body;
 
   try {
-    const updatedExpense = await Transaction.update(
+    const updatedTransaction = await Transaction.update(
       {
         concept: concept,
         amount: amount,
         date: date,
+        categoryId: categoryId,
       },
       {
         where: {
@@ -87,13 +89,15 @@ const updateExpenseTransaction = async (req, res) => {
       }
     );
 
-    if (updatedExpense) {
+    if (updatedTransaction) {
       return res.status(200).send({
         ok: true,
-        updateExpense: "Updated Expense!",
+        updateTransaction: updatedTransaction,
       });
     }
   } catch (error) {
+    console.log(error);
+
     return res.status(400).send({
       ok: false,
       msg: error,
@@ -111,7 +115,7 @@ const deleteTransaction = async (req, res) => {
       {
         where: {
           id: id,
-          userId: userId,
+          userId: null,
         },
       }
     );
@@ -132,6 +136,6 @@ const deleteTransaction = async (req, res) => {
 module.exports = {
   createTransaction,
   allTransactions,
-  updateExpenseTransaction,
+  updateTransaction,
   deleteTransaction,
 };
