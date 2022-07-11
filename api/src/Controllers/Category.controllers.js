@@ -59,7 +59,7 @@ const deleteCategory = async (req, res) => {
       {
         where: {
           id: id,
-          userId: userId,
+          userId: null,
         },
       }
     );

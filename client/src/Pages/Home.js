@@ -34,6 +34,8 @@ const Home = () => {
               representation: "complete",
             }))
         );
+      allTransactionsList &&
+        allTransactionsList.sort((a, b) => a.date < b.date);
 
       if (isMounted) {
         setAllTransactionsInfoBalance(data);
@@ -73,6 +75,7 @@ const Home = () => {
         allTransactionsDetails={allTransactionsDetails}
         allCategories={allCategories}
         getAllTransactionsInfo={getAllTransactionsInfo}
+        setAllTransactionsDetails={setAllTransactionsDetails}
       />
     </Box>
   );

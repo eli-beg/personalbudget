@@ -13,7 +13,6 @@ const DeleteTransactionModal = ({
     handleCloseDeleteModal();
   };
 
-  console.log("hola t", transaction);
   return (
     <Dialog open={openModalDelete}>
       <DialogTitle>

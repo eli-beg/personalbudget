@@ -18,7 +18,7 @@ import * as yup from "yup";
 import CreateCategoryModal from "./CreateCategoryModal";
 
 const EditTransactionForm = ({
-  transactionToEdit,
+  transaction,
   setCloseDialogForm,
   getAllTransactionsInfo,
   allCategories,
@@ -45,22 +45,22 @@ const EditTransactionForm = ({
 
   const formik = useFormik({
     initialValues: {
-      id: transactionToEdit.id,
-      userId: transactionToEdit.userId,
-      type: transactionToEdit.type,
-      concept: transactionToEdit.concept,
-      amount: transactionToEdit.amount,
-      date: transactionToEdit.date,
+      id: transaction.id,
+      userId: transaction.userId,
+      type: transaction.type,
+      concept: transaction.concept,
+      amount: transaction.amount,
+      date: transaction.date,
       categoryId: allCategories.find(
-        (category) => category.id === transactionToEdit.categoryId
+        (category) => category.id === transaction.categoryId
       ),
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       const value = {
-        id: transactionToEdit.id,
-        userId: transactionToEdit.userId,
-        type: transactionToEdit.type,
+        id: transaction.id,
+        userId: transaction.userId,
+        type: transaction.type,
         concept: values.concept,
         amount: values.amount,
         date: values.date,
@@ -82,8 +82,6 @@ const EditTransactionForm = ({
   const handleClose = () => {
     setOpen(false);
   };
-
-  console.log("new category", newCategory);
 
   return (
     <form onSubmit={formik.handleSubmit}>

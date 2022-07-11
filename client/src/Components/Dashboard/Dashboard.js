@@ -11,6 +11,7 @@ const Dashboard = ({
   allTransactionsDetails,
   allCategories,
   getAllTransactionsInfo,
+  setAllTransactionsDetails,
 }) => {
   const drawerWidth = 240;
 
@@ -26,13 +27,12 @@ const Dashboard = ({
     >
       <Grid
         container
-        xs={12}
         justifyContent="center"
         sx={{
           marginTop: "16px",
         }}
       >
-        <Grid container xs={12} spacing={2}>
+        <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={6} lg={4}>
             <Box
               sx={{
@@ -82,6 +82,7 @@ const Dashboard = ({
             allTransactionsDetails={allTransactionsDetails}
             allCategories={allCategories}
             getAllTransactionsInfo={getAllTransactionsInfo}
+            setAllTransactionsDetails={setAllTransactionsDetails}
           />
         </Grid>
 
