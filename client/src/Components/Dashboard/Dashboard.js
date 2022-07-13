@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import { Box, Typography } from "@mui/material";
+import React from "react";
+import { Box } from "@mui/material";
 import { Grid } from "@mui/material";
 import BalanceCard from "./BalanceCard";
 import IncomesCard from "./IncomesCard";

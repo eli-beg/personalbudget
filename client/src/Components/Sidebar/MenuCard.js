@@ -6,31 +6,98 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
+  IconButton,
+  Grid,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 
 const MenuCard = () => {
+  const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
   return (
     <Box>
       <Typography sx={{ marginTop: "60px" }}>pBudgetApp</Typography>
       <Divider variant="middle" />
-
       <List>
-        <ListItem>
-          <ListItemButton>
-            <ListItemText>Dashboard</ListItemText>
-          </ListItemButton>
+        <ListItem nested display="flex">
+          <Grid container display="flex" direction="column">
+            <Grid item>
+              <ListItem>
+                <Link to="/home/dashboard" style={{ textDecoration: "none" }}>
+                  <ListItemButton>
+                    <ListItemText>Dashboard</ListItemText>
+                  </ListItemButton>
+                </Link>
+              </ListItem>
+              <Divider variant="middle" />
+            </Grid>
+            <Grid item>
+              <ListItemButton onClick={() => setOpen(!open)}>
+                <KeyboardArrowDown
+                  sx={{ transform: open ? "inital" : "rotate(-90deg)" }}
+                />
+                <ListItemText>Transactions</ListItemText>
+              </ListItemButton>
+            </Grid>
+
+            {open && (
+              <Grid item>
+                <List>
+                  <ListItem>
+                    <ListItemButton>
+                      <Typography>Expenses</Typography>
+                    </ListItemButton>
+                  </ListItem>
+                  <ListItem>
+                    <ListItemButton>
+                      <Typography>Incomes</Typography>
+                    </ListItemButton>
+                  </ListItem>
+                  <ListItem>
+                    <ListItemButton>
+                      <Typography>All Transactions</Typography>
+                    </ListItemButton>
+                  </ListItem>
+                  <ListItem>
+                    <ListItemButton>
+                      <Typography>Create Transaction</Typography>
+                    </ListItemButton>
+                  </ListItem>
+                </List>
+              </Grid>
+            )}
+          </Grid>
         </ListItem>
-        <Divider variant="middle" />
-        <ListItem>
-          <ListItemButton>
-            <ListItemText>Transactions</ListItemText>
-          </ListItemButton>
-        </ListItem>
-        <ListItem>
-          <ListItemButton>
-            <ListItemText>Categories</ListItemText>
-          </ListItemButton>
+        <ListItem nested display="flex">
+          <Grid container display="flex" direction="column">
+            <Grid item>
+              <ListItemButton onClick={() => setOpen2(!open2)}>
+                <KeyboardArrowDown
+                  sx={{ transform: open2 ? "inital" : "rotate(-90deg)" }}
+                />
+                <ListItemText>Categories</ListItemText>
+              </ListItemButton>
+            </Grid>
+
+            {open2 && (
+              <Grid item>
+                <List>
+                  <ListItem>
+                    <ListItemButton>
+                      <Typography>All Categories</Typography>
+                    </ListItemButton>
+                  </ListItem>
+                  <ListItem>
+                    <ListItemButton>
+                      <Typography>Create Category</Typography>
+                    </ListItemButton>
+                  </ListItem>
+                </List>
+              </Grid>
+            )}
+          </Grid>
         </ListItem>
       </List>
     </Box>
