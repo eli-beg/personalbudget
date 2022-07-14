@@ -1,16 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Box } from "@mui/material";
-import { Grid } from "@mui/material";
-import BalanceCard from "./BalanceCard";
-import IncomesCard from "./IncomesCard";
-import ExpensesCard from "./ExpensesCard";
-import ListOfTransactionsCard from "./ListOfTransactionsCard";
+import { Box, Grid } from "@mui/material";
+import ListOfTransactionsCard from "../Dashboard/ListOfTransactionsCard";
 import { allTransactions } from "../../Api/Transactions";
 import useIsMountedRef from "../../hooks/useIsMountedRef";
 import { getCategories } from "../../Api/Categories";
 import formatISO from "date-fns/formatISO";
+import BalanceCard from "../Dashboard/BalanceCard";
 
-const Dashboard = () => {
+const ExpensesDetails = () => {
   const drawerWidth = 240;
 
   const [allTransactionsInfoBalance, setAllTransactionsInfoBalance] =
@@ -79,22 +76,19 @@ const Dashboard = () => {
           marginTop: "16px",
         }}
       >
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={6} md={6} lg={4}>
+        <Grid item xs={12} sm={6} md={6} lg={4}>
+          <Box
+            sx={{
+              width: "100%",
+              height: "200px",
+              borderRadius: "10px",
+              backgroundColor: "#0091ea",
+            }}
+          >
             <BalanceCard
               allTransactionsInfoBalance={allTransactionsInfoBalance}
             />
-          </Grid>
-          <Grid item xs={12} sm={6} md={6} lg={4}>
-            <IncomesCard
-              allTransactionsInfoBalance={allTransactionsInfoBalance}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} md={6} lg={4}>
-            <ExpensesCard
-              allTransactionsInfoBalance={allTransactionsInfoBalance}
-            />
-          </Grid>
+          </Box>
         </Grid>
 
         <Grid container item xs={12} lg={12} sx={{ marginTop: "10px" }}>
@@ -102,7 +96,6 @@ const Dashboard = () => {
             transactionsDetails={allTransactionsDetails}
             allCategories={allCategories}
             getAllTransactionsInfo={getAllTransactionsInfo}
-            setAllTransactionsDetails={setAllTransactionsDetails}
           />
         </Grid>
       </Grid>
@@ -110,4 +103,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default ExpensesDetails;

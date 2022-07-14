@@ -8,15 +8,24 @@ import theme from "./themeConfig";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import Dashboard from "./Components/Dashboard/Dashboard";
+import ExpensesDetails from "./Components/Transactions/ExpensesDetails";
+import IncomesDetails from "./Components/Transactions/IncomesDetails";
+import AllTransactionsDetails from "./Components/Transactions/AllTransactionsDetails";
 
 function App() {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <ThemeProvider theme={theme}>
         <Routes>
-          <Route path="/" element={<WelcomeScreen />} />
-          <Route path="home" element={<Home />}>
+          <Route path="/welcomescreen" element={<WelcomeScreen />} />
+          <Route path="/" element={<Home />}>
             <Route path="dashboard" element={<Dashboard />} />
+            <Route path="expenses-details" element={<ExpensesDetails />} />
+            <Route path="incomes-details" element={<IncomesDetails />} />
+            <Route
+              path="all-transactions-details"
+              element={<AllTransactionsDetails />}
+            />
           </Route>
         </Routes>
       </ThemeProvider>

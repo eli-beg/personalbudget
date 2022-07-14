@@ -38,7 +38,7 @@ const WelcomeScreen = () => {
             size="large"
             sx={{ width: "200px", margin: "50px" }}
           >
-            <Link to="/home" style={{ textDecoration: "none" }}>
+            <Link to="/dashboard" style={{ textDecoration: "none" }}>
               homee
             </Link>
           </Button>

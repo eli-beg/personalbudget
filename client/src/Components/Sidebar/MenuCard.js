@@ -16,6 +16,7 @@ import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 const MenuCard = () => {
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
+
   return (
     <Box>
       <Typography sx={{ marginTop: "60px" }}>pBudgetApp</Typography>
@@ -25,7 +26,7 @@ const MenuCard = () => {
           <Grid container display="flex" direction="column">
             <Grid item>
               <ListItem>
-                <Link to="/home/dashboard" style={{ textDecoration: "none" }}>
+                <Link to="dashboard" style={{ textDecoration: "none" }}>
                   <ListItemButton>
                     <ListItemText>Dashboard</ListItemText>
                   </ListItemButton>
@@ -46,19 +47,25 @@ const MenuCard = () => {
               <Grid item>
                 <List>
                   <ListItem>
-                    <ListItemButton>
-                      <Typography>Expenses</Typography>
-                    </ListItemButton>
+                    <Link to="/expenses-details">
+                      <ListItemButton>
+                        <Typography>Expenses</Typography>
+                      </ListItemButton>
+                    </Link>
                   </ListItem>
                   <ListItem>
-                    <ListItemButton>
-                      <Typography>Incomes</Typography>
-                    </ListItemButton>
+                    <Link to="/incomes-details">
+                      <ListItemButton>
+                        <Typography>Incomes</Typography>
+                      </ListItemButton>
+                    </Link>
                   </ListItem>
                   <ListItem>
-                    <ListItemButton>
-                      <Typography>All Transactions</Typography>
-                    </ListItemButton>
+                    <Link to="all-transactions-details">
+                      <ListItemButton>
+                        <Typography>All Transactions</Typography>
+                      </ListItemButton>
+                    </Link>
                   </ListItem>
                   <ListItem>
                     <ListItemButton>

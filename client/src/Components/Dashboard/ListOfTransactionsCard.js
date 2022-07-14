@@ -21,7 +21,7 @@ import DeleteTransactionModal from "./DeleteTransactionModal";
 import HeadCell from "./HeadCell";
 
 const ListOfTransactionsCard = ({
-  allTransactionsDetails,
+  transactionsDetails,
   allCategories,
   getAllTransactionsInfo,
 }) => {
@@ -34,10 +34,10 @@ const ListOfTransactionsCard = ({
   const [openModalCategoryFilter, setOpenModalCategoryFilter] = useState(false);
 
   useEffect(() => {
-    if (allTransactionsDetails) {
-      setTransactionsByDate(allTransactionsDetails);
+    if (transactionsDetails) {
+      setTransactionsByDate(transactionsDetails);
     }
-  }, [allTransactionsDetails, allCategories]);
+  }, [transactionsDetails, allCategories]);
 
   useEffect(() => {
     handleOrderTransactions(sortField);
@@ -45,12 +45,12 @@ const ListOfTransactionsCard = ({
 
   const filterMenuItemOptions = (value) => {
     if (value === "expense" || value === "income") {
-      const transactionsFiltered = allTransactionsDetails.filter(
+      const transactionsFiltered = transactionsDetails.filter(
         (transaction) => transaction.type === value
       );
       setTransactionsByDate(transactionsFiltered);
     } else {
-      const transactionsFiltered = allTransactionsDetails.filter(
+      const transactionsFiltered = transactionsDetails.filter(
         (transaction) => transaction.categoryId === value
       );
       if (transactionsFiltered.length >= 1) {
@@ -61,7 +61,7 @@ const ListOfTransactionsCard = ({
       }
       if (transactionsFiltered.length === 0 && value === "all") {
         setOpenModalCategoryFilter(false);
-        setTransactionsByDate(allTransactionsDetails);
+        setTransactionsByDate(transactionsDetails);
       }
     }
   };
