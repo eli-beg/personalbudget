@@ -13,4 +13,13 @@ const deleteTransaction = async (value) => {
   return await axios.put(`${API_PATH}/transaction/delete-transaction`, value);
 };
 
-export { allTransactions, updateTransaction, deleteTransaction };
+const createTransaction = async (value) => {
+  return await axios.post(`${API_PATH}/transaction/create-transaction`, value);
+};
+
+export {
+  allTransactions,
+  updateTransaction,
+  deleteTransaction,
+  createTransaction,
+};

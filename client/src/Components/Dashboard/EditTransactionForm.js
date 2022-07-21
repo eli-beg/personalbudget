@@ -10,6 +10,7 @@ import {
   DialogContent,
   DialogActions,
   createFilterOptions,
+  InputAdornment,
 } from "@mui/material";
 import { DesktopDatePicker } from "@mui/x-date-pickers";
 import { updateTransaction } from "../../Api/Transactions";
@@ -128,6 +129,11 @@ const EditTransactionForm = ({
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             helperText={formik.errors.amount}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">$</InputAdornment>
+              ),
+            }}
           />
         </Grid>
 

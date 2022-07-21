@@ -68,9 +68,11 @@ const MenuCard = () => {
                     </Link>
                   </ListItem>
                   <ListItem>
-                    <ListItemButton>
-                      <Typography>Create Transaction</Typography>
-                    </ListItemButton>
+                    <Link to="create-transaction">
+                      <ListItemButton>
+                        <Typography>Create Transaction</Typography>
+                      </ListItemButton>
+                    </Link>
                   </ListItem>
                 </List>
               </Grid>

@@ -1,5 +1,4 @@
 import React from "react";
-
 import Home from "./Pages/Home";
 import WelcomeScreen from "./Pages/WelcomeScreen";
 import { Routes, Route } from "react-router-dom";
@@ -11,6 +10,7 @@ import Dashboard from "./Components/Dashboard/Dashboard";
 import ExpensesDetails from "./Components/Transactions/ExpensesDetails";
 import IncomesDetails from "./Components/Transactions/IncomesDetails";
 import AllTransactionsDetails from "./Components/Transactions/AllTransactionsDetails";
+import CreateTransaction from "./Components/Transactions/CreateTransaction";
 
 function App() {
   return (
@@ -26,6 +26,7 @@ function App() {
               path="all-transactions-details"
               element={<AllTransactionsDetails />}
             />
+            <Route path="create-transaction" element={<CreateTransaction />} />
           </Route>
         </Routes>
       </ThemeProvider>

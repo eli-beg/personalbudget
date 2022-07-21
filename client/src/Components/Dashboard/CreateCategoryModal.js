@@ -14,6 +14,7 @@ const CreateCategoryModal = ({
       const { data } = await createApiCategory({ name: newCategory });
       if (data.ok) {
         setField("categoryId", data.category);
+        setOpenDialogCategory(false);
       }
     } catch (error) {
       console.error(error);
