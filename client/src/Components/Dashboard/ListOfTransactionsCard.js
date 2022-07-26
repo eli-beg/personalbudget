@@ -29,6 +29,7 @@ const ListOfTransactionsCard = ({
   const [openModalDelete, setOpenModalDelete] = useState(false);
   const [closeDialogForm, setCloseDialogForm] = useState(false);
   const [transactionsByDate, setTransactionsByDate] = useState(null);
+  const [transactionSelected, setTransactionSelected] = useState(null);
   const [sortField, setSortField] = useState("");
   const [order, setOrder] = useState("desc");
   const [openModalCategoryFilter, setOpenModalCategoryFilter] = useState(false);
@@ -100,7 +101,8 @@ const ListOfTransactionsCard = ({
     handleSorting(sortField, order);
   };
 
-  const handleOpenEditModal = () => {
+  const handleOpenEditModal = (transaction) => {
+    setTransactionSelected(transaction);
     setOpenEditModal(true);
   };
 
@@ -180,20 +182,6 @@ const ListOfTransactionsCard = ({
                       >
                         <EditIcon />
                       </IconButton>
-                      <Dialog
-                        open={openEditModal}
-                        onClose={handleCloseEditModal}
-                      >
-                        <DialogTitle>Edit transaction</DialogTitle>
-                        <DialogContent>
-                          <EditTransactionForm
-                            transaction={transaction}
-                            setCloseDialogForm={setCloseDialogForm}
-                            getAllTransactionsInfo={getAllTransactionsInfo}
-                            allCategories={allCategories}
-                          />
-                        </DialogContent>
-                      </Dialog>
                     </TableCell>
                     <TableCell>
                       <IconButton
@@ -218,6 +206,17 @@ const ListOfTransactionsCard = ({
         onClose={handleCloseCategoryFilter}
       >
         <Typography>There are not transactions with this category</Typography>
+      </Dialog>
+      <Dialog open={openEditModal} onClose={handleCloseEditModal}>
+        <DialogTitle>Edit transaction</DialogTitle>
+        <DialogContent>
+          <EditTransactionForm
+            transaction={transactionSelected}
+            setCloseDialogForm={setCloseDialogForm}
+            getAllTransactionsInfo={getAllTransactionsInfo}
+            allCategories={allCategories}
+          />
+        </DialogContent>
       </Dialog>
     </>
   );

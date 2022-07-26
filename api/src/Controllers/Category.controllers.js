@@ -4,17 +4,14 @@ const { Category } = require("../db");
 const createCategory = async (req, res) => {
   const { name, userId } = req.body;
   try {
-    const newCategory = await Category.create({
-      name: name,
-      status: "active",
-      userId: null,
+    const [newCategory, created] = await Category.findOrCreate({
+      where: { name: name, status: "active", userId: null },
     });
-    if (userId) {
-      await newCategory.setUser(userId);
-    }
+
     if (newCategory) {
       return res.status(200).send({
         ok: true,
+        created: created,
         category: newCategory,
       });
     }

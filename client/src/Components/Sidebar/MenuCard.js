@@ -94,14 +94,18 @@ const MenuCard = () => {
               <Grid item>
                 <List>
                   <ListItem>
-                    <ListItemButton>
-                      <Typography>All Categories</Typography>
-                    </ListItemButton>
+                    <Link to="all-categories">
+                      <ListItemButton>
+                        <Typography>All Categories</Typography>
+                      </ListItemButton>
+                    </Link>
                   </ListItem>
                   <ListItem>
-                    <ListItemButton>
-                      <Typography>Create Category</Typography>
-                    </ListItemButton>
+                    <Link to="create-category">
+                      <ListItemButton>
+                        <Typography>Create Category</Typography>
+                      </ListItemButton>
+                    </Link>
                   </ListItem>
                 </List>
               </Grid>

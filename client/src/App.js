@@ -11,6 +11,8 @@ import ExpensesDetails from "./Components/Transactions/ExpensesDetails";
 import IncomesDetails from "./Components/Transactions/IncomesDetails";
 import AllTransactionsDetails from "./Components/Transactions/AllTransactionsDetails";
 import CreateTransaction from "./Components/Transactions/CreateTransaction";
+import AllCategories from "./Components/Categories/AllCategories";
+import CreateCategory from "./Components/Categories/CreateCategory";
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
               element={<AllTransactionsDetails />}
             />
             <Route path="create-transaction" element={<CreateTransaction />} />
+            <Route path="all-categories" element={<AllCategories />} />
+            <Route path="create-category" element={<CreateCategory />} />
           </Route>
         </Routes>
       </ThemeProvider>

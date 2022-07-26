@@ -5,10 +5,6 @@ import {
   TextField,
   Typography,
   Button,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
   createFilterOptions,
   InputAdornment,
 } from "@mui/material";
@@ -17,19 +13,27 @@ import { updateTransaction } from "../../Api/Transactions";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import CreateCategoryModal from "./CreateCategoryModal";
+import DialogSubmittingForm from "../DialogSubmittingForm";
 
 const EditTransactionForm = ({
   transaction,
   setCloseDialogForm,
-  getAllTransactionsInfo,
   allCategories,
 }) => {
-  const [open, setOpen] = useState(false);
-
   const [openDialogCategory, setOpenDialogCategory] = useState(false);
   const [newCategory, setNewCategory] = useState(null);
+  const [openDialogSubmittingForm, setOpenDialogSubmittingForm] =
+    useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const dialogTitle = "change";
 
   const filter = createFilterOptions();
+
+  const formikSubmit = (formikValues) => {
+    formik.handleSubmit(formikValues);
+    formik.setSubmitting(false);
+  };
 
   const validationSchema = yup.object({
     concept: yup
@@ -65,10 +69,14 @@ const EditTransactionForm = ({
         concept: values.concept,
         amount: values.amount,
         date: values.date,
-        categoryId: values.categoryId.id,
+        categoryId:
+          transaction.type === "expense" ? values.categoryId.id : null,
       };
-      console.log("transaccion para onsubmit", value);
-      await updateTransaction(value);
+
+      const { data } = await updateTransaction(value);
+      if (data.ok === true) {
+        setSubmitted(true);
+      }
     },
   });
 
@@ -76,16 +84,8 @@ const EditTransactionForm = ({
     setField("date", e);
   };
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form onReset={formik.handleReset}>
       <Grid container rowSpacing={3}>
         <Grid xs={12} item direction="column">
           <Typography>Type of Transaction</Typography>
@@ -184,12 +184,8 @@ const EditTransactionForm = ({
               return option.name;
             }}
             renderOption={(props, option) => <li {...props}>{option.name}</li>}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                // label={categoryToEdit ? categoryToEdit : ""}
-              />
-            )}
+            renderInput={(params) => <TextField {...params} />}
+            disabled={formik.values.type === "income" ? true : false}
           />
           <CreateCategoryModal
             open={openDialogCategory}
@@ -222,40 +218,26 @@ const EditTransactionForm = ({
           justifyContent="center"
         >
           <Button
-            type="submit"
-            onClick={handleOpen}
+            type="button"
             disabled={formik.isSubmitting}
+            onClick={() => setOpenDialogSubmittingForm(true)}
           >
             Save
           </Button>
 
           <Button onClick={() => setCloseDialogForm(true)}>Don't save</Button>
         </Grid>
-        <Dialog open={open}>
-          <DialogTitle>Saving changes</DialogTitle>
-          <DialogContent>Are you sure you want to save changes?</DialogContent>
-          <DialogActions>
-            <Button
-              type="button"
-              onClick={() => {
-                formik.setSubmitting(false);
-                handleClose();
-                setCloseDialogForm(true);
-                getAllTransactionsInfo();
-              }}
-            >
-              Yes, I agree
-            </Button>
-            <Button
-              onClick={() => {
-                handleClose();
-                setCloseDialogForm(true);
-              }}
-            >
-              Disagree
-            </Button>
-          </DialogActions>
-        </Dialog>
+        <DialogSubmittingForm
+          openDialogSubmittingForm={openDialogSubmittingForm}
+          setOpenDialogSubmittingForm={setOpenDialogSubmittingForm}
+          dialogTitle={dialogTitle}
+          formikValues={formik.values}
+          formikSubmit={formikSubmit}
+          submittedValues={submitted}
+          setSubmitted={setSubmitted}
+          formikReset={formik.handleReset}
+          setCloseDialogForm={setCloseDialogForm}
+        />
       </Grid>
     </form>
   );
