@@ -3,9 +3,9 @@ import { Box } from "@mui/system";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Grid } from "@mui/material";
-import ListOfCategoriesCard from "./ListOfCategoriesCard";
-import useIsMountedRef from "../../hooks/useIsMountedRef";
-import { getNumberOfTransactions } from "../../Api/Transactions";
+import ListOfCategoriesCard from "../Components/Categories/ListOfCategoriesCard";
+import useIsMountedRef from "../hooks/useIsMountedRef";
+import { getNumberOfTransactions } from "../Api/Transactions";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -76,6 +76,7 @@ const AllCategories = () => {
           >
             <ListOfCategoriesCard
               counterOfTransactionsByCategory={counterOfTransactionsByCategory}
+              getAllCategories={getAllCategories}
             />
           </Box>
         </Grid>

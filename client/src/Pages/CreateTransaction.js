@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Box, Grid } from "@mui/material";
-import CreateTransactionForm from "./CreateTransactionForm";
-import useIsMountedRef from "../../hooks/useIsMountedRef";
-import { getCategories } from "../../Api/Categories";
+import CreateTransactionForm from "../Components/Transactions/CreateTransactionForm";
+import useIsMountedRef from "../hooks/useIsMountedRef";
+import { getCategories } from "../Api/Categories";
 
 const CreateTransaction = () => {
   const [allCategories, setAllCategories] = useState(null);

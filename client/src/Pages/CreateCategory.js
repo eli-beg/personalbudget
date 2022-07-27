@@ -1,6 +1,6 @@
 import React from "react";
 import { Box } from "@mui/system";
-import CreateCategoryForm from "./CreateCategoryForm";
+import CreateCategoryForm from "../Components/Categories/CreateCategoryForm";
 import { Typography } from "@mui/material";
 
 const CreateCategory = () => {

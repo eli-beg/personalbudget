@@ -1,18 +1,18 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Box, Grid } from "@mui/material";
-import ListOfTransactionsCard from "../Dashboard/ListOfTransactionsCard";
-import { allTransactions } from "../../Api/Transactions";
-import useIsMountedRef from "../../hooks/useIsMountedRef";
-import { getCategories } from "../../Api/Categories";
-import formatISO from "date-fns/formatISO";
-import BalanceCard from "../Dashboard/BalanceCard";
+import { Box, Grid, Typography } from "@mui/material";
+import useIsMountedRef from "../hooks/useIsMountedRef";
+import { allTransactions } from "../Api/Transactions";
+import { formatISO } from "date-fns";
+import { getCategories } from "../Api/Categories";
+import IncomesCard from "../Components/Dashboard/IncomesCard";
+import ListOfTransactionsCard from "../Components/Dashboard/ListOfTransactionsCard";
 
-const ExpensesDetails = () => {
+const IncomesDetails = () => {
   const drawerWidth = 240;
 
   const [allTransactionsInfoBalance, setAllTransactionsInfoBalance] =
     useState(null);
-  const [allTransactionsDetails, setAllTransactionsDetails] = useState(null);
+  const [incomesDetails, setIncomesDetails] = useState(null);
   const [allCategories, setAllCategories] = useState(null);
 
   const isMounted = useIsMountedRef();
@@ -33,9 +33,13 @@ const ExpensesDetails = () => {
       allTransactionsList &&
         allTransactionsList.sort((a, b) => a.date < b.date);
 
+      const incomesList = allTransactionsList.filter(
+        (t) => t.type === "income"
+      );
+
       if (isMounted) {
         setAllTransactionsInfoBalance(data);
-        setAllTransactionsDetails(allTransactionsList);
+        setIncomesDetails(incomesList);
       }
     } catch (error) {
       console.error(error);
@@ -85,7 +89,7 @@ const ExpensesDetails = () => {
               backgroundColor: "#0091ea",
             }}
           >
-            <BalanceCard
+            <IncomesCard
               allTransactionsInfoBalance={allTransactionsInfoBalance}
             />
           </Box>
@@ -93,7 +97,7 @@ const ExpensesDetails = () => {
 
         <Grid container item xs={12} lg={12} sx={{ marginTop: "10px" }}>
           <ListOfTransactionsCard
-            transactionsDetails={allTransactionsDetails}
+            transactionsDetails={incomesDetails}
             allCategories={allCategories}
             getAllTransactionsInfo={getAllTransactionsInfo}
           />
@@ -103,4 +107,4 @@ const ExpensesDetails = () => {
   );
 };
 
-export default ExpensesDetails;
+export default IncomesDetails;

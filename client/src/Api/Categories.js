@@ -9,4 +9,17 @@ const createApiCategory = async (value) => {
   return await axios.post(`${API_PATH}/category/create-category`, value);
 };
 
-export { getCategories, createApiCategory };
+const updateApiCategory = async (value) => {
+  return await axios.put(`${API_PATH}/category/update-category`, value);
+};
+
+const deleteApiCategory = async (value) => {
+  return await axios.put(`${API_PATH}/category/delete-category`, value);
+};
+
+export {
+  getCategories,
+  createApiCategory,
+  updateApiCategory,
+  deleteApiCategory,
+};

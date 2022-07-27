@@ -1,18 +1,21 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Box, Grid, Typography } from "@mui/material";
-import ExpensesCard from "../Dashboard/ExpensesCard";
-import ListOfTransactionsCard from "../Dashboard/ListOfTransactionsCard";
-import { allTransactions } from "../../Api/Transactions";
-import useIsMountedRef from "../../hooks/useIsMountedRef";
-import { getCategories } from "../../Api/Categories";
+import { Box } from "@mui/material";
+import { Grid } from "@mui/material";
+import BalanceCard from "../Components/Dashboard/BalanceCard";
+import IncomesCard from "../Components/Dashboard/IncomesCard";
+import ExpensesCard from "../Components/Dashboard/ExpensesCard";
+import ListOfTransactionsCard from "../Components/Dashboard/ListOfTransactionsCard";
+import { allTransactions } from "../Api/Transactions";
+import useIsMountedRef from "../hooks/useIsMountedRef";
+import { getCategories } from "../Api/Categories";
 import formatISO from "date-fns/formatISO";
 
-const ExpensesDetails = () => {
+const Dashboard = () => {
   const drawerWidth = 240;
 
   const [allTransactionsInfoBalance, setAllTransactionsInfoBalance] =
     useState(null);
-  const [expensesDetails, setExpensesDetails] = useState(null);
+  const [allTransactionsDetails, setAllTransactionsDetails] = useState(null);
   const [allCategories, setAllCategories] = useState(null);
 
   const isMounted = useIsMountedRef();
@@ -33,13 +36,9 @@ const ExpensesDetails = () => {
       allTransactionsList &&
         allTransactionsList.sort((a, b) => a.date < b.date);
 
-      const expensesList = allTransactionsList.filter(
-        (t) => t.type === "expense"
-      );
-
       if (isMounted) {
         setAllTransactionsInfoBalance(data);
-        setExpensesDetails(expensesList);
+        setAllTransactionsDetails(allTransactionsList);
       }
     } catch (error) {
       console.error(error);
@@ -80,26 +79,30 @@ const ExpensesDetails = () => {
           marginTop: "16px",
         }}
       >
-        <Grid item xs={12} sm={6} md={6} lg={4}>
-          <Box
-            sx={{
-              width: "100%",
-              height: "200px",
-              borderRadius: "10px",
-              backgroundColor: "#0091ea",
-            }}
-          >
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6} md={6} lg={4}>
+            <BalanceCard
+              allTransactionsInfoBalance={allTransactionsInfoBalance}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} md={6} lg={4}>
+            <IncomesCard
+              allTransactionsInfoBalance={allTransactionsInfoBalance}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} md={6} lg={4}>
             <ExpensesCard
               allTransactionsInfoBalance={allTransactionsInfoBalance}
             />
-          </Box>
+          </Grid>
         </Grid>
 
         <Grid container item xs={12} lg={12} sx={{ marginTop: "10px" }}>
           <ListOfTransactionsCard
-            transactionsDetails={expensesDetails}
+            transactionsDetails={allTransactionsDetails}
             allCategories={allCategories}
             getAllTransactionsInfo={getAllTransactionsInfo}
+            setAllTransactionsDetails={setAllTransactionsDetails}
           />
         </Grid>
       </Grid>
@@ -107,4 +110,4 @@ const ExpensesDetails = () => {
   );
 };
 
-export default ExpensesDetails;
+export default Dashboard;

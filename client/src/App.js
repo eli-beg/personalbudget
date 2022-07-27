@@ -6,13 +6,14 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "./themeConfig";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import Dashboard from "./Components/Dashboard/Dashboard";
-import ExpensesDetails from "./Components/Transactions/ExpensesDetails";
-import IncomesDetails from "./Components/Transactions/IncomesDetails";
-import AllTransactionsDetails from "./Components/Transactions/AllTransactionsDetails";
-import CreateTransaction from "./Components/Transactions/CreateTransaction";
-import AllCategories from "./Components/Categories/AllCategories";
-import CreateCategory from "./Components/Categories/CreateCategory";
+
+import ExpensesDetails from "./Pages/ExpensesDetails";
+import IncomesDetails from "./Pages/IncomesDetails";
+import AllTransactionsDetails from "./Pages/AllTransactionsDetails";
+import CreateTransaction from "./Pages/CreateTransaction";
+import AllCategories from "./Pages/AllCategories";
+import CreateCategory from "./Pages/CreateCategory";
+import Dashboard from "./Pages/Dashboard";
 
 function App() {
   return (

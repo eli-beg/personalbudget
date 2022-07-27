@@ -46,10 +46,41 @@ const getCategories = async (req, res) => {
   }
 };
 
+const updateCategory = async (req, res) => {
+  const { id, name, userId } = req.body;
+  try {
+    const updateCategory = await Category.update(
+      {
+        name: name,
+      },
+      {
+        where: {
+          id: id,
+          userId: userId,
+        },
+      }
+    );
+    if (updateCategory) {
+      const updatedCategory = await Category.findByPk(id);
+      if (updatedCategory) {
+        return res.status(200).send({
+          ok: true,
+          updatedCategory: updatedCategory,
+        });
+      }
+    }
+  } catch (error) {
+    return res.status(400).send({
+      ok: false,
+      msg: error,
+    });
+  }
+};
+
 const deleteCategory = async (req, res) => {
   const { id, userId } = req.body;
   try {
-    const deleteCategory = Category.update(
+    const deleteCategory = await Category.update(
       {
         status: "inactive",
       },
@@ -78,4 +109,5 @@ module.exports = {
   createCategory,
   deleteCategory,
   getCategories,
+  updateCategory,
 };
