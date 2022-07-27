@@ -17,9 +17,16 @@ const createTransaction = async (value) => {
   return await axios.post(`${API_PATH}/transaction/create-transaction`, value);
 };
 
+const getNumberOfTransactions = async () => {
+  return await axios.get(
+    `${API_PATH}/transaction/get-number-of-transactions-by-category`
+  );
+};
+
 export {
   allTransactions,
   updateTransaction,
   deleteTransaction,
   createTransaction,
+  getNumberOfTransactions,
 };
