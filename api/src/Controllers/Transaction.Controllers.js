@@ -1,5 +1,6 @@
 const express = require("express");
 const { Transaction } = require("../db");
+const { Category } = require("../db");
 
 const createTransaction = async (req, res) => {
   const { type, concept, amount, date, userId, categoryId } = req.body;
@@ -133,9 +134,47 @@ const deleteTransaction = async (req, res) => {
   }
 };
 
+const getNumberOfTransactionsByCategory = async (req, res) => {
+  try {
+    const allCategories = await Category.findAll({
+      where: {
+        status: "active",
+        userId: null,
+      },
+      raw: true,
+    });
+    if (allCategories) {
+      const transactionsCounterByCategory = await Promise.all(
+        allCategories.map(async (category) => {
+          const { count } = await Transaction.findAndCountAll({
+            where: {
+              status: "active",
+              userId: null,
+              categoryId: category.id,
+            },
+          });
+          return { ...category, count: count };
+        })
+      );
+
+      return res.status(200).send({
+        ok: true,
+        allCategories: allCategories,
+        transactionsCounterByCategory: transactionsCounterByCategory,
+      });
+    }
+  } catch (error) {
+    return res.status(400).send({
+      ok: false,
+      msg: error,
+    });
+  }
+};
+
 module.exports = {
   createTransaction,
   allTransactions,
   updateTransaction,
   deleteTransaction,
+  getNumberOfTransactionsByCategory,
 };
