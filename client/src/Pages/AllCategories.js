@@ -12,15 +12,22 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const AllCategories = () => {
   const [counterOfTransactionsByCategory, setCounterOfTransactionsByCategory] =
     useState(null);
+  const [dataLists, setDataList] = useState(null);
+  const [labels, setLabels] = useState(null);
 
   const isMounted = useIsMountedRef();
 
   const getAllCategories = useCallback(async () => {
     try {
       const { data } = await getNumberOfTransactions();
-      console.log("hello", data);
+
       if (isMounted) {
         setCounterOfTransactionsByCategory(data.transactionsCounterByCategory);
+        const counter = data.transactionsCounterByCategory;
+        const counterDataList = counter.map((category) => category.count);
+        setDataList(counterDataList);
+        const counterLabels = counter.map((category) => category.name);
+        setLabels(counterLabels);
       }
     } catch (error) {
       console.error(error);
@@ -33,10 +40,32 @@ const AllCategories = () => {
 
   const drawerWidth = 240;
 
+  console.log("hola counter", counterOfTransactionsByCategory);
+
+  console.log("hola counter", dataLists);
+  console.log("hola counter", labels);
+
+  // const data = {
+  //   datasets: [
+  //     {
+  //       data: [4, 2, 0, 0, 0],
+  //       backgroundColor: [
+  //         "rgba(255, 99, 132, 0.8)",
+  //         "rgba(54, 162, 235,0.8)",
+  //         "rgba(255, 206, 86, 0.8)",
+  //         "rgba(75, 192, 192, 0.2)",
+  //         "rgba(153, 102, 255, 0.2)",
+  //         "rgba(255, 159, 64, 0.2)",
+  //       ],
+  //     },
+  //   ],
+  //   labels: ["Comida", "Salud", "jere", "eli", "holis"],
+  // };
+
   const data = {
     datasets: [
       {
-        data: [10, 20, 30],
+        data: dataLists && dataLists,
         backgroundColor: [
           "rgba(255, 99, 132, 0.8)",
           "rgba(54, 162, 235,0.8)",
@@ -47,7 +76,7 @@ const AllCategories = () => {
         ],
       },
     ],
-    labels: ["Red", "Yellow", "Blue"],
+    labels: labels && labels,
   };
 
   return (
@@ -64,7 +93,7 @@ const AllCategories = () => {
         <Grid item lg={3}>
           <Doughnut data={data} />
         </Grid>
-        <Grid item lg={9}>
+        <Grid item lg={8}>
           <Box
             sx={{
               backgroundColor: "white",

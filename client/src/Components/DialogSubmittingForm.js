@@ -58,6 +58,7 @@ const DialogSubmittingForm = ({
               setSubmitted(false);
               formikReset();
               setCloseDialogForm && setCloseDialogForm(true);
+              // getAllTransactionsInfo();
             }}
           >
             Ok

@@ -19,6 +19,7 @@ const EditTransactionForm = ({
   transaction,
   setCloseDialogForm,
   allCategories,
+  getAllTransactionsInfo,
 }) => {
   const [openDialogCategory, setOpenDialogCategory] = useState(false);
   const [newCategory, setNewCategory] = useState(null);
@@ -76,6 +77,7 @@ const EditTransactionForm = ({
       const { data } = await updateTransaction(value);
       if (data.ok === true) {
         setSubmitted(true);
+        getAllTransactionsInfo();
       }
     },
   });
@@ -237,6 +239,7 @@ const EditTransactionForm = ({
           setSubmitted={setSubmitted}
           formikReset={formik.handleReset}
           setCloseDialogForm={setCloseDialogForm}
+          getAllTransactionsInfo={getAllTransactionsInfo}
         />
       </Grid>
     </form>

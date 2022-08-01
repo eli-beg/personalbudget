@@ -7,7 +7,7 @@ import { getCategories } from "../Api/Categories";
 import formatISO from "date-fns/formatISO";
 import BalanceCard from "../Components/Dashboard/BalanceCard";
 
-const ExpensesDetails = () => {
+const AllTransactionsDetails = () => {
   const drawerWidth = 240;
 
   const [allTransactionsInfoBalance, setAllTransactionsInfoBalance] =
@@ -23,13 +23,6 @@ const ExpensesDetails = () => {
 
       const allTransactionsList = data.allTransactions;
 
-      allTransactionsList &&
-        allTransactionsList.map(
-          (t) =>
-            (t.date = formatISO(new Date(t.date), {
-              representation: "complete",
-            }))
-        );
       allTransactionsList &&
         allTransactionsList.sort((a, b) => a.date < b.date);
 
@@ -103,4 +96,4 @@ const ExpensesDetails = () => {
   );
 };
 
-export default ExpensesDetails;
+export default AllTransactionsDetails;

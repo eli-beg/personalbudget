@@ -27,13 +27,6 @@ const Dashboard = () => {
       const allTransactionsList = data.allTransactions;
 
       allTransactionsList &&
-        allTransactionsList.map(
-          (t) =>
-            (t.date = formatISO(new Date(t.date), {
-              representation: "complete",
-            }))
-        );
-      allTransactionsList &&
         allTransactionsList.sort((a, b) => a.date < b.date);
 
       if (isMounted) {
@@ -102,7 +95,6 @@ const Dashboard = () => {
             transactionsDetails={allTransactionsDetails}
             allCategories={allCategories}
             getAllTransactionsInfo={getAllTransactionsInfo}
-            setAllTransactionsDetails={setAllTransactionsDetails}
           />
         </Grid>
       </Grid>
