@@ -2,11 +2,13 @@ const express = require("express");
 const { User } = require("../db");
 
 const createUser = async (req, res) => {
-  const { name, email } = req.body;
+  const { firstname, lastname, email, password } = req.body;
   try {
     const newUser = await User.create({
-      name: name,
+      firstname: firstname,
+      lastname: lastname,
       email: email,
+      password: password,
       status: "active",
     });
     if (newUser) {

@@ -8,7 +8,6 @@ import ListOfTransactionsCard from "../Components/Dashboard/ListOfTransactionsCa
 import { allTransactions } from "../Api/Transactions";
 import useIsMountedRef from "../hooks/useIsMountedRef";
 import { getCategories } from "../Api/Categories";
-import formatISO from "date-fns/formatISO";
 
 const Dashboard = () => {
   const drawerWidth = 240;

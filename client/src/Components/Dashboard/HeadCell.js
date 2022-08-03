@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   IconButton,
   Menu,
@@ -6,7 +7,6 @@ import {
   TableSortLabel,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import React, { useEffect, useState } from "react";
 
 const HeadCell = ({
   order,
@@ -88,7 +88,7 @@ const HeadCell = ({
     <>
       {headCells.map((headCell, index) =>
         headCell.sortLabel ? (
-          <TableCell>
+          <TableCell sx={{ fontWeight: "bold" }}>
             <TableSortLabel
               key={headCell.id}
               direction={order}
@@ -99,7 +99,7 @@ const HeadCell = ({
           </TableCell>
         ) : headCell.filterLabel ? (
           <>
-            <TableCell>
+            <TableCell sx={{ fontWeight: "bold" }}>
               {headCell.label}
 
               <IconButton key={index} onClick={(e) => handleClick(index, e)}>
@@ -127,7 +127,7 @@ const HeadCell = ({
             </TableCell>
           </>
         ) : (
-          <TableCell>{headCell.label}</TableCell>
+          <TableCell sx={{ fontWeight: "bold" }}>{headCell.label}</TableCell>
         )
       )}
     </>

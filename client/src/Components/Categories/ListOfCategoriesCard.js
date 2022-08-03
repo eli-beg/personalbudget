@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   IconButton,
   Table,
@@ -12,6 +12,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DialogDeleteCategory from "./DeleteCategory/DialogDeleteCategory";
 import DialogEditCategory from "./EditCategory/DialogEditCategory";
+import HeadCellsCategories from "./HeadCellsCategories";
 
 const ListOfCategoriesCard = ({
   counterOfTransactionsByCategory,
@@ -20,6 +21,19 @@ const ListOfCategoriesCard = ({
   const [openEditModal, setOpenEditModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [categorySelected, setCategorySelected] = useState(null);
+  const [sortField, setSortField] = useState(null);
+  const [order, setOrder] = useState("desc");
+  const [categoriesSorted, setCategoriesSorted] = useState(null);
+
+  useEffect(() => {
+    if (counterOfTransactionsByCategory) {
+      setCategoriesSorted(counterOfTransactionsByCategory);
+    }
+  }, [counterOfTransactionsByCategory]);
+
+  useEffect(() => {
+    handleOrderCategories(sortField);
+  }, [sortField]);
 
   const handleOpenEditModal = (category) => {
     setOpenEditModal(true);
@@ -31,21 +45,55 @@ const ListOfCategoriesCard = ({
     setCategorySelected(category);
   };
 
+  const handleOrderCategories = (id) => {
+    setSortField(id);
+    const sortOrder = id === sortField && order === "asc" ? "desc" : "asc";
+    setOrder(sortOrder);
+    handleSorting(sortField, order);
+  };
+
+  const handleSorting = (sortField, order) => {
+    if (sortField === "name" && order === "asc") {
+      const sorted = categoriesSorted.sort(
+        (a, b) => a[sortField] > b[sortField]
+      );
+      setCategoriesSorted(sorted);
+    }
+    if (sortField === "name" && order === "desc") {
+      const sorted = categoriesSorted.sort(
+        (a, b) => a[sortField] < b[sortField]
+      );
+      setCategoriesSorted(sorted);
+    }
+    if (sortField === "count" && order === "asc") {
+      const sorted = categoriesSorted.sort(
+        (a, b) => a[sortField] - b[sortField]
+      );
+      setCategoriesSorted(sorted);
+    }
+    if (sortField === "count" && order === "desc") {
+      const sorted = categoriesSorted.sort(
+        (a, b) => b[sortField] - a[sortField]
+      );
+      setCategoriesSorted(sorted);
+    }
+  };
+
   return (
     <>
       <TableContainer>
         <Table sx={{ minWidth: 650, backgroundColor: "white" }}>
           <TableHead>
             <TableRow>
-              <TableCell>Name</TableCell>
-              <TableCell>Number of Transactions</TableCell>
-              <TableCell>Edit</TableCell>
-              <TableCell>Delete</TableCell>
+              <HeadCellsCategories
+                handleOrderCategories={handleOrderCategories}
+                order={order}
+              />
             </TableRow>
           </TableHead>
           <TableBody>
-            {counterOfTransactionsByCategory &&
-              counterOfTransactionsByCategory.map((category) => (
+            {categoriesSorted &&
+              categoriesSorted.map((category) => (
                 <TableRow>
                   <TableCell>{category.name}</TableCell>
                   <TableCell>{category.count}</TableCell>

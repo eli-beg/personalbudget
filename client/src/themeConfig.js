@@ -19,7 +19,17 @@ const theme = createTheme({
     fontWeight: 500,
   },
   h5: {
-    fontSize: "0.875rem",
+    fontSize: "2.4",
+    color: "#2596be",
+    fontWeight: 500,
+  },
+  h6: {
+    fontSize: "2.1rem",
+    color: "#2596be",
+    fontWeight: 500,
+  },
+  h8: {
+    fontSize: "1.7rem",
     color: "#2596be",
     fontWeight: 500,
   },
@@ -36,6 +46,12 @@ const theme = createTheme({
       },
     },
   },
+  // typography: {
+  //   fontFamily: " 'Work Sans'",
+  //   fontSize: 14,
+  //   fontWeightLight: 300,
+  // },
+
   components: {
     MuiListItemButton: {
       styleOverrides: {
@@ -72,6 +88,13 @@ const theme = createTheme({
       },
     },
   },
+  // MuiCssBaseline: {
+  //   styleOverrides: `@font-face{
+  //     font-family: 'Karla';
+  //     font-style: normal
+  //   }
+  //   `,
+  // },
 });
 
 export default theme;

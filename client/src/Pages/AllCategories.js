@@ -40,28 +40,6 @@ const AllCategories = () => {
 
   const drawerWidth = 240;
 
-  console.log("hola counter", counterOfTransactionsByCategory);
-
-  console.log("hola counter", dataLists);
-  console.log("hola counter", labels);
-
-  // const data = {
-  //   datasets: [
-  //     {
-  //       data: [4, 2, 0, 0, 0],
-  //       backgroundColor: [
-  //         "rgba(255, 99, 132, 0.8)",
-  //         "rgba(54, 162, 235,0.8)",
-  //         "rgba(255, 206, 86, 0.8)",
-  //         "rgba(75, 192, 192, 0.2)",
-  //         "rgba(153, 102, 255, 0.2)",
-  //         "rgba(255, 159, 64, 0.2)",
-  //       ],
-  //     },
-  //   ],
-  //   labels: ["Comida", "Salud", "jere", "eli", "holis"],
-  // };
-
   const data = {
     datasets: [
       {
@@ -89,11 +67,17 @@ const AllCategories = () => {
         borderRadius: "10px",
       }}
     >
-      <Grid container marginTop={6} padding={2} columnSpacing={4}>
+      <Grid
+        container
+        marginTop={6}
+        padding={2}
+        columnSpacing={4}
+        justifyContent="space-around"
+      >
         <Grid item lg={3}>
           <Doughnut data={data} />
         </Grid>
-        <Grid item lg={8}>
+        <Grid item lg={6}>
           <Box
             sx={{
               backgroundColor: "white",
