@@ -89,156 +89,175 @@ const CreateTransactionForm = ({ allCategories }) => {
         <Grid
           item
           container
-          direction="column"
+          direction="row"
+          wrap="wrap"
+          justifyContent="center"
+          spacing={2}
           marginTop="15px"
-          borderRadius="3px"
-          lg={10}
-          sx={{ backgroundColor: "white" }}
+          padding="20px"
+          xs={11}
+          lg={6}
+          sx={{
+            borderRadius: "7px",
+            borderStyle: "solid",
+            borderColor: "#e2e2e0",
+            backgroundColor: "whitesmoke",
+          }}
         >
-          <Grid item>
-            <Typography>Type of Transaction</Typography>
-            <FormGroup>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    value="expense"
-                    onChange={(e) =>
-                      handleCheckBoxChange(formik.setFieldValue, e)
-                    }
-                    checked={formik.values.type === "expense" ? true : false}
-                  />
-                }
-                name="expense"
-                label="Expense"
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    value="income"
-                    onChange={(e) =>
-                      handleCheckBoxChange(formik.setFieldValue, e)
-                    }
-                    checked={formik.values.type === "income" ? true : false}
-                  />
-                }
-                name="income"
-                label="Income"
-              />
-            </FormGroup>
+          <Grid container item xs={12} justifyContent="center">
+            <Typography variant="h6" color="text.primary">
+              NEW TRANSACTION
+            </Typography>
           </Grid>
-          <Grid item>
-            <Typography>Concept</Typography>
-            <TextField
-              fullWidth
-              hiddenLabel
-              variant="filled"
-              size="small"
-              name="concept"
-              value={formik.values.concept}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              helperText={formik.errors.concept}
-            />
-          </Grid>
-          <Grid>
-            <Typography>Amount</Typography>
-            <TextField
-              fullWidth
-              hiddenLabel
-              variant="filled"
-              size="small"
-              name="amount"
-              value={formik.values.amount}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              helperText={formik.errors.amount}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">$</InputAdornment>
-                ),
-              }}
-            />
-          </Grid>
-          <Grid>
-            <Typography>Category</Typography>
-            <Autocomplete
-              value={formik.values.categoryId}
-              onChange={(event, newValue) => {
-                if (typeof newValue === "string") {
-                  formik.setFieldValue("categoryId", newValue);
-                } else if (newValue && newValue.inputValue) {
-                  setOpenDialogCategory(true);
-                  setNewCategory(newValue.inputValue);
-                } else {
-                  formik.setFieldValue("categoryId", newValue);
-                }
-              }}
-              filterOptions={(options, params) => {
-                const filtered = filter(options, params);
-
-                const { inputValue } = params;
-
-                const isExisting = options.some(
-                  (option) => inputValue === option.name
-                );
-                if (inputValue !== "" && !isExisting) {
-                  filtered.push({
-                    inputValue,
-                    name: `Add "${inputValue}"`,
-                  });
-                }
-
-                return filtered;
-              }}
-              selectOnFocus
-              clearOnBlur
-              handleHomeEndKeys
-              options={allCategories ? allCategories : []}
-              getOptionLabel={(option) => {
-                if (typeof option === "string") {
-                  return option;
-                }
-
-                if (option.inputValue) {
-                  return option.inputValue;
-                }
-
-                return option.name;
-              }}
-              renderOption={(props, option) => (
-                <li {...props}>{option.name}</li>
-              )}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  helperText={
-                    formik.values.type === "income"
-                      ? "You can only add categories to expenses"
-                      : null
+          <Grid container item xs={12}>
+            <Grid container item xs={12} direction="column">
+              <Typography variant="h8" color="text.secondary">
+                Type of Transaction
+              </Typography>
+              <FormGroup>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      value="expense"
+                      onChange={(e) =>
+                        handleCheckBoxChange(formik.setFieldValue, e)
+                      }
+                      checked={formik.values.type === "expense" ? true : false}
+                    />
                   }
+                  name="expense"
+                  label="Expense"
                 />
-              )}
-              disabled={formik.values.type === "income" ? true : false}
-            />
-            <CreateCategoryModal
-              open={openDialogCategory}
-              onClose={() => setOpenDialogCategory(false)}
-              newCategory={newCategory}
-              setField={formik.setFieldValue}
-              setOpenDialogCategory={setOpenDialogCategory}
-            />
-          </Grid>
-          <Grid>
-            <Typography>Date</Typography>
-            <DesktopDatePicker
-              inputFormat="dd/MM/yyyy"
-              value={formik.values.date}
-              onChange={(e) => handleChangeDate(formik.setFieldValue, e)}
-              onBlur={formik.handleBlur}
-              helperText={formik.errors.date}
-              renderInput={(params) => <TextField {...params} />}
-              fullWidth
-            />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      value="income"
+                      onChange={(e) =>
+                        handleCheckBoxChange(formik.setFieldValue, e)
+                      }
+                      checked={formik.values.type === "income" ? true : false}
+                    />
+                  }
+                  name="income"
+                  label="Income"
+                />
+              </FormGroup>
+            </Grid>
+            <Grid container item xs={12}>
+              <Typography>Concept</Typography>
+              <TextField
+                fullWidth
+                hiddenLabel
+                variant="filled"
+                size="small"
+                name="concept"
+                value={formik.values.concept}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                helperText={formik.errors.concept}
+              />
+            </Grid>
+            <Grid container item xs={12}>
+              <Typography>Amount</Typography>
+              <TextField
+                fullWidth
+                hiddenLabel
+                variant="filled"
+                size="small"
+                name="amount"
+                value={formik.values.amount}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                helperText={formik.errors.amount}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">$</InputAdornment>
+                  ),
+                }}
+              />
+            </Grid>
+            <Grid container item xs={12}>
+              <Typography>Category</Typography>
+              <Autocomplete
+                fullWidth
+                value={formik.values.categoryId}
+                onChange={(event, newValue) => {
+                  if (typeof newValue === "string") {
+                    formik.setFieldValue("categoryId", newValue);
+                  } else if (newValue && newValue.inputValue) {
+                    setOpenDialogCategory(true);
+                    setNewCategory(newValue.inputValue);
+                  } else {
+                    formik.setFieldValue("categoryId", newValue);
+                  }
+                }}
+                filterOptions={(options, params) => {
+                  const filtered = filter(options, params);
+
+                  const { inputValue } = params;
+
+                  const isExisting = options.some(
+                    (option) => inputValue === option.name
+                  );
+                  if (inputValue !== "" && !isExisting) {
+                    filtered.push({
+                      inputValue,
+                      name: `Add "${inputValue}"`,
+                    });
+                  }
+
+                  return filtered;
+                }}
+                selectOnFocus
+                clearOnBlur
+                handleHomeEndKeys
+                options={allCategories ? allCategories : []}
+                getOptionLabel={(option) => {
+                  if (typeof option === "string") {
+                    return option;
+                  }
+
+                  if (option.inputValue) {
+                    return option.inputValue;
+                  }
+
+                  return option.name;
+                }}
+                renderOption={(props, option) => (
+                  <li {...props}>{option.name}</li>
+                )}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    helperText={
+                      formik.values.type === "income"
+                        ? "You can only add categories to expenses"
+                        : null
+                    }
+                  />
+                )}
+                disabled={formik.values.type === "income" ? true : false}
+              />
+              <CreateCategoryModal
+                open={openDialogCategory}
+                onClose={() => setOpenDialogCategory(false)}
+                newCategory={newCategory}
+                setField={formik.setFieldValue}
+                setOpenDialogCategory={setOpenDialogCategory}
+              />
+            </Grid>
+            <Grid container item xs={12} direction="column">
+              <Typography>Date</Typography>
+              <DesktopDatePicker
+                inputFormat="dd/MM/yyyy"
+                value={formik.values.date}
+                onChange={(e) => handleChangeDate(formik.setFieldValue, e)}
+                onBlur={formik.handleBlur}
+                helperText={formik.errors.date}
+                renderInput={(params) => <TextField {...params} />}
+                fullWidth
+              />
+            </Grid>
           </Grid>
           <Grid>
             <Button
