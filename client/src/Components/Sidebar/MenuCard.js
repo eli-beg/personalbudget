@@ -12,6 +12,7 @@ import {
 
 import { Link } from "react-router-dom";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
+import pig from "../../images/pig.jpg";
 
 const MenuCard = () => {
   const [open, setOpen] = useState(false);
@@ -20,9 +21,34 @@ const MenuCard = () => {
   return (
     <Box>
       <Grid container direction="column" alignItems="flex-start">
-        <Grid item sx={{ width: "100%", height: "120px" }}>
-          <Typography>pBudgetApp</Typography>
-          <Divider variant="middle" />
+        <Grid
+          container
+          item
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+          sx={{
+            width: "100%",
+            height: "120px",
+          }}
+        >
+          <Grid container item>
+            <Grid
+              item
+              sx={{
+                backgroundImage: `url(${pig})`,
+                backgroundSize: "cover",
+                width: "120px",
+                height: "130px",
+              }}
+            ></Grid>
+            <Grid item>
+              <Typography>pBudgetApp</Typography>
+            </Grid>
+            <Grid item>
+              <Divider variant="middle" />
+            </Grid>
+          </Grid>
         </Grid>
         <Grid item sx={{ width: "100%" }}>
           <List>
@@ -30,7 +56,7 @@ const MenuCard = () => {
               <Grid container display="flex" direction="column">
                 <Grid item>
                   <ListItem>
-                    <Link to="dashboard" style={{ textDecoration: "none" }}>
+                    <Link to="/dashboard" style={{ textDecoration: "none" }}>
                       <ListItemButton>
                         <ListItemText>Dashboard</ListItemText>
                       </ListItemButton>
@@ -65,14 +91,14 @@ const MenuCard = () => {
                         </Link>
                       </ListItem>
                       <ListItem>
-                        <Link to="all-transactions-details">
+                        <Link to="/all-transactions-details">
                           <ListItemButton>
                             <Typography>All Transactions</Typography>
                           </ListItemButton>
                         </Link>
                       </ListItem>
                       <ListItem>
-                        <Link to="create-transaction">
+                        <Link to="/create-transaction">
                           <ListItemButton>
                             <Typography>Create Transaction</Typography>
                           </ListItemButton>

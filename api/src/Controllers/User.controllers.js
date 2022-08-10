@@ -1,5 +1,8 @@
 const express = require("express");
 const { User } = require("../db");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const { SECRET } = process.env;
 
 const createUser = async (req, res) => {
   const { firstname, lastname, email, password } = req.body;
@@ -52,4 +55,44 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.exports = { createUser, deleteUser };
+const loginUser = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const userValues = await User.findOne({
+      where: { email: email },
+      attributes: ["firstname", "lastname", "email", "password", "id"],
+    });
+
+    if (userValues) {
+      const passwordCorrect = await bcrypt.compare(
+        password,
+        userValues.dataValues.password
+      );
+
+      if (passwordCorrect) {
+        const userForToken = {
+          id: userValues.dataValues.id,
+          email: userValues.dataValues.email,
+        };
+
+        const token = jwt.sign(userForToken, SECRET);
+
+        return res.status(200).send({
+          ok: true,
+          userEmail: userValues.dataValues.email,
+          userFirstname: userValues.dataValues.firstname,
+          userLastname: userValues.dataValues.lastname,
+          id: userValues.dataValues.id,
+          token,
+        });
+      }
+    }
+  } catch (error) {
+    return res.status(401).send({
+      ok: false,
+      msg: "Invalid email or password",
+    });
+  }
+};
+
+module.exports = { createUser, deleteUser, loginUser };

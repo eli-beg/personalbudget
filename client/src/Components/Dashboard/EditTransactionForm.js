@@ -52,7 +52,6 @@ const EditTransactionForm = ({
   const formik = useFormik({
     initialValues: {
       id: transaction.id,
-      userId: transaction.userId,
       type: transaction.type,
       concept: transaction.concept,
       amount: transaction.amount,
@@ -65,7 +64,6 @@ const EditTransactionForm = ({
     onSubmit: async (values) => {
       const value = {
         id: transaction.id,
-        userId: transaction.userId,
         type: transaction.type,
         concept: values.concept,
         amount: values.amount,

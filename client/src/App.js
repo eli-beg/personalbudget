@@ -21,20 +21,20 @@ function App() {
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <ThemeProvider theme={theme}>
         <Routes>
-          <Route path="/" element={<WelcomeScreen />}>
-            <Route path="/" element={<Login />} />
+          <Route path="/welcome-screen" element={<WelcomeScreen />}>
+            <Route path="/welcome-screen" element={<Login />} />
             <Route path="register" element={<RegisterScreen />} />
           </Route>
 
-          <Route path="/main" element={<Home />}>
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="expenses-details" element={<ExpensesDetails />} />
-            <Route path="incomes-details" element={<IncomesDetails />} />
+          <Route path="/" element={<Home />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/expenses-details" element={<ExpensesDetails />} />
+            <Route path="/incomes-details" element={<IncomesDetails />} />
             <Route
-              path="all-transactions-details"
+              path="/all-transactions-details"
               element={<AllTransactionsDetails />}
             />
-            <Route path="create-transaction" element={<CreateTransaction />} />
+            <Route path="/create-transaction" element={<CreateTransaction />} />
             <Route path="all-categories" element={<AllCategories />} />
             <Route path="create-category" element={<CreateCategory />} />
           </Route>

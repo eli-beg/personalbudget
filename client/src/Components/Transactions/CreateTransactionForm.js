@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Autocomplete,
   Button,
@@ -10,6 +10,7 @@ import {
   InputAdornment,
   TextField,
   Typography,
+  useRadioGroup,
 } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -63,7 +64,6 @@ const CreateTransactionForm = ({ allCategories }) => {
       amount: "",
       date: "",
       categoryId: "",
-      userId: null,
     },
 
     validationSchema: validationSchema,
@@ -93,7 +93,7 @@ const CreateTransactionForm = ({ allCategories }) => {
           wrap="wrap"
           justifyContent="center"
           spacing={2}
-          marginTop="15px"
+          marginTop="55px"
           padding="20px"
           xs={11}
           lg={6}
@@ -109,7 +109,7 @@ const CreateTransactionForm = ({ allCategories }) => {
               NEW TRANSACTION
             </Typography>
           </Grid>
-          <Grid container item xs={12}>
+          <Grid container item>
             <Grid container item xs={12} direction="column">
               <Typography variant="h8" color="text.secondary">
                 Type of Transaction

@@ -2,13 +2,21 @@ import React from "react";
 import Grid from "@mui/material/Grid";
 import WelcomeBackground from "../Components/WelcomeScreen/WelcomeBackground";
 import { Outlet } from "react-router-dom";
+import { Box } from "@mui/material";
 
 const WelcomeScreen = () => {
   return (
-    <Grid container wrap="wrap" sx={{ minHeight: "100vh" }}>
-      <Outlet />
-      <WelcomeBackground />
-    </Grid>
+    <Box
+      sx={{
+        backgroundColor: "whitesmoke",
+        height: "100%",
+      }}
+    >
+      <Grid container wrap="wrap" sx={{ minHeight: "100vh" }}>
+        <Outlet />
+        <WelcomeBackground />
+      </Grid>
+    </Box>
   );
 };
 
