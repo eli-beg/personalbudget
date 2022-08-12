@@ -4,7 +4,7 @@ import useIsMountedRef from "../hooks/useIsMountedRef";
 import { allTransactions } from "../Api/Transactions";
 import { getCategories } from "../Api/Categories";
 import IncomesCard from "../Components/Dashboard/IncomesCard";
-import ListOfTransactionsCard from "../Components/Dashboard/ListOfTransactionsCard";
+import ListOfTransactionsCard from "../Components/Transactions/ListOfTransactionsCard";
 
 const IncomesDetails = () => {
   const drawerWidth = 240;

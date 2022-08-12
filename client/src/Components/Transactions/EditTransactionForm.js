@@ -12,7 +12,7 @@ import { DesktopDatePicker } from "@mui/x-date-pickers";
 import { updateTransaction } from "../../Api/Transactions";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import CreateCategoryModal from "./CreateCategoryModal";
+import CreateCategoryModal from "../Categories/CreateCategory/CreateCategoryModal";
 import DialogSubmittingForm from "../DialogSubmittingForm";
 
 const EditTransactionForm = ({

@@ -4,7 +4,7 @@ import { Grid } from "@mui/material";
 import BalanceCard from "../Components/Dashboard/BalanceCard";
 import IncomesCard from "../Components/Dashboard/IncomesCard";
 import ExpensesCard from "../Components/Dashboard/ExpensesCard";
-import ListOfTransactionsCard from "../Components/Dashboard/ListOfTransactionsCard";
+import ListOfTransactionsCard from "../Components/Transactions/ListOfTransactionsCard";
 import { allTransactions, lastTenTransactions } from "../Api/Transactions";
 import useIsMountedRef from "../hooks/useIsMountedRef";
 import { getCategories } from "../Api/Categories";

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Box, Grid } from "@mui/material";
-import ListOfTransactionsCard from "../Components/Dashboard/ListOfTransactionsCard";
+import ListOfTransactionsCard from "../Components/Transactions/ListOfTransactionsCard";
 import { allTransactions } from "../Api/Transactions";
 import useIsMountedRef from "../hooks/useIsMountedRef";
 import { getCategories } from "../Api/Categories";

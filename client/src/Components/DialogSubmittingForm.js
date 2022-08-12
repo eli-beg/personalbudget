@@ -19,6 +19,7 @@ const DialogSubmittingForm = ({
   openDialogDataExists,
   setOpenDialogDataExists,
   setCloseDialogForm,
+  getAllCategories,
 }) => {
   return (
     <>
@@ -34,6 +35,7 @@ const DialogSubmittingForm = ({
             onClick={() => {
               formikSubmit(formikValues);
               setOpenDialogSubmittingForm(false);
+              getAllCategories();
             }}
           >
             Yes
@@ -58,7 +60,6 @@ const DialogSubmittingForm = ({
               setSubmitted(false);
               formikReset();
               setCloseDialogForm && setCloseDialogForm(true);
-              // getAllTransactionsInfo();
             }}
           >
             Ok

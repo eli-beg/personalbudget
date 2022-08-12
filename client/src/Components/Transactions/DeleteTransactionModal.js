@@ -3,7 +3,7 @@ import { Button, Dialog, DialogActions, DialogTitle } from "@mui/material";
 import { deleteTransaction } from "../../Api/Transactions";
 
 const DeleteTransactionModal = ({
-  openModalDelete,
+  open,
   transaction,
   handleCloseDeleteModal,
 }) => {
@@ -13,15 +13,16 @@ const DeleteTransactionModal = ({
   };
 
   return (
-    <Dialog open={openModalDelete}>
+    <Dialog open={open}>
       <DialogTitle>
-        Are you sure you want to delete the "{transaction.concept}" transaction?
+        Are you sure you want to delete the "{transaction?.concept}"
+        transaction?
       </DialogTitle>
       <DialogActions>
-        <Button onClick={removeTransaction}>Yes</Button>
+        <Button onClick={() => removeTransaction()}>Yes</Button>
       </DialogActions>
       <DialogActions>
-        <Button onClick={handleCloseDeleteModal}>No</Button>
+        <Button onClick={() => handleCloseDeleteModal()}>No</Button>
       </DialogActions>
     </Dialog>
   );

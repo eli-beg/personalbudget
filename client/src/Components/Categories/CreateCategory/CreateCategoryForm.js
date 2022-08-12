@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Button, Grid, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { createApiCategory } from "../../Api/Categories";
-import DialogSubmittingForm from "../DialogSubmittingForm";
+import DialogSubmittingForm from "../../DialogSubmittingForm";
+import { createApiCategory } from "../../../Api/Categories";
 
 const CreateCategoryForm = () => {
   const [openDialogSubmittingForm, setOpenDialogSubmittingForm] =

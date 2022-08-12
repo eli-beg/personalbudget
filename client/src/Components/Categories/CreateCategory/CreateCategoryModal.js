@@ -1,6 +1,6 @@
-import { Button, Dialog, DialogActions, DialogTitle } from "@mui/material";
 import React, { useCallback } from "react";
-import { createApiCategory } from "../../Api/Categories";
+import { Button, Dialog, DialogActions, DialogTitle } from "@mui/material";
+import { createApiCategory } from "../../../Api/Categories";
 
 const CreateCategoryModal = ({
   open,

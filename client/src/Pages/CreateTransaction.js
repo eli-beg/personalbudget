@@ -36,7 +36,10 @@ const CreateTransaction = () => {
         borderRadius: "10px",
       }}
     >
-      <CreateTransactionForm allCategories={allCategories} />
+      <CreateTransactionForm
+        allCategories={allCategories}
+        getAllCategories={getAllCategories}
+      />
     </Box>
   );
 };

@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import {
   Box,
   Dialog,
-  DialogContent,
-  DialogTitle,
   IconButton,
   Table,
   TableBody,
@@ -15,9 +13,9 @@ import {
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import EditTransactionForm from "./EditTransactionForm";
 import format from "date-fns/format";
 import DeleteTransactionModal from "./DeleteTransactionModal";
+import EditTransactionModal from "./EditTransactionModal";
 import HeadCell from "./HeadCell";
 
 const ListOfTransactionsCard = ({
@@ -111,7 +109,8 @@ const ListOfTransactionsCard = ({
     getAllTransactionsInfo();
   };
 
-  const handleOpenDeleteModal = () => {
+  const handleOpenDeleteModal = (transaction) => {
+    setTransactionSelected(transaction);
     setOpenModalDelete(true);
   };
 
@@ -189,11 +188,6 @@ const ListOfTransactionsCard = ({
                       >
                         <DeleteIcon />{" "}
                       </IconButton>
-                      <DeleteTransactionModal
-                        openModalDelete={openModalDelete}
-                        transaction={transaction}
-                        handleCloseDeleteModal={handleCloseDeleteModal}
-                      />
                     </TableCell>
                   </TableRow>
                 ))}
@@ -201,22 +195,25 @@ const ListOfTransactionsCard = ({
           </Table>
         </TableContainer>
       </Box>
+      <DeleteTransactionModal
+        open={openModalDelete}
+        transaction={transactionSelected}
+        handleCloseDeleteModal={handleCloseDeleteModal}
+      />
+      <EditTransactionModal
+        openEditModal={openEditModal}
+        transactionSelected={transactionSelected}
+        handleCloseEditModal={handleCloseEditModal}
+        getAllTransactionsInfo={getAllTransactionsInfo}
+        allCategories={allCategories}
+        setCloseDialogForm={setCloseDialogForm}
+      />
+
       <Dialog
         open={openModalCategoryFilter}
         onClose={handleCloseCategoryFilter}
       >
         <Typography>There are not transactions with this category</Typography>
-      </Dialog>
-      <Dialog open={openEditModal} onClose={handleCloseEditModal}>
-        <DialogTitle>Edit transaction</DialogTitle>
-        <DialogContent>
-          <EditTransactionForm
-            transaction={transactionSelected}
-            setCloseDialogForm={setCloseDialogForm}
-            getAllTransactionsInfo={getAllTransactionsInfo}
-            allCategories={allCategories}
-          />
-        </DialogContent>
       </Dialog>
     </>
   );

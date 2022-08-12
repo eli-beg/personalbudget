@@ -10,16 +10,15 @@ import {
   InputAdornment,
   TextField,
   Typography,
-  useRadioGroup,
 } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import CreateCategoryModal from "../Dashboard/CreateCategoryModal";
+import CreateCategoryModal from "../Categories/CreateCategory/CreateCategoryModal";
 import { DesktopDatePicker } from "@mui/x-date-pickers";
 import { createTransaction } from "../../Api/Transactions";
 import DialogSubmittingForm from "../DialogSubmittingForm";
 
-const CreateTransactionForm = ({ allCategories }) => {
+const CreateTransactionForm = ({ allCategories, getAllCategories }) => {
   const [openDialogCategory, setOpenDialogCategory] = useState(false);
   const [newCategory, setNewCategory] = useState(null);
 
@@ -79,6 +78,7 @@ const CreateTransactionForm = ({ allCategories }) => {
       const { data } = await createTransaction(value);
       if (data.ok === true) {
         setSubmitted(true);
+        getAllCategories();
       }
     },
   });
@@ -267,7 +267,9 @@ const CreateTransactionForm = ({ allCategories }) => {
             >
               Save
             </Button>
-            <Button type="reset">Clean</Button>
+            <Button type="reset" onClick={() => getAllCategories()}>
+              Clean
+            </Button>
           </Grid>
           <DialogSubmittingForm
             openDialogSubmittingForm={openDialogSubmittingForm}
@@ -278,6 +280,7 @@ const CreateTransactionForm = ({ allCategories }) => {
             submittedValues={submitted}
             setSubmitted={setSubmitted}
             formikReset={formik.handleReset}
+            getAllCategories={getAllCategories}
           />
         </Grid>
       </Grid>
