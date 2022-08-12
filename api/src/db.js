@@ -37,7 +37,6 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 const { Transaction, Category, User } = sequelize.models;
 
-//  relaciones 1 a muchos
 User.hasMany(Transaction, { foreignKey: "userId" });
 Transaction.belongsTo(User);
 User.hasMany(Category, { foreignKey: "userId" });

@@ -176,13 +176,11 @@ const getNumberOfTransactionsByCategory = async (req, res) => {
       });
 
       if (allCategories) {
-        console.log("h", allCategories);
         const transactionsCounterByCategory = await Promise.all(
           allCategories.map(async (category) => {
             const { count } = await Transaction.findAndCountAll({
               where: {
                 status: "active",
-
                 categoryId: category.id,
               },
             });

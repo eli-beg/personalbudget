@@ -49,9 +49,9 @@ const IncomesCard = ({ allTransactionsInfoBalance }) => {
             justifyContent="flex-end"
             alignItems="flex-start"
           >
-            <IconButton sx={{ color: "white" }}>
+            {/* <IconButton sx={{ color: "white" }}>
               <AddIcon />
-            </IconButton>
+            </IconButton> */}
           </Grid>
           <Grid
             container
