@@ -5,6 +5,10 @@ const allTransactions = async () => {
   return await axios.get(`${API_PATH}/transaction/all-transactions`);
 };
 
+const lastTenTransactions = async () => {
+  return await axios.get(`${API_PATH}/transaction/last-ten-transactions`);
+};
+
 const updateTransaction = async (value) => {
   return await axios.put(`${API_PATH}/transaction/update-transaction`, value);
 };
@@ -25,6 +29,7 @@ const getNumberOfTransactions = async () => {
 
 export {
   allTransactions,
+  lastTenTransactions,
   updateTransaction,
   deleteTransaction,
   createTransaction,

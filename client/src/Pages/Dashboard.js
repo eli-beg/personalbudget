@@ -5,7 +5,7 @@ import BalanceCard from "../Components/Dashboard/BalanceCard";
 import IncomesCard from "../Components/Dashboard/IncomesCard";
 import ExpensesCard from "../Components/Dashboard/ExpensesCard";
 import ListOfTransactionsCard from "../Components/Dashboard/ListOfTransactionsCard";
-import { allTransactions } from "../Api/Transactions";
+import { allTransactions, lastTenTransactions } from "../Api/Transactions";
 import useIsMountedRef from "../hooks/useIsMountedRef";
 import { getCategories } from "../Api/Categories";
 
@@ -23,14 +23,20 @@ const Dashboard = () => {
     try {
       const { data } = await allTransactions();
 
-      const allTransactionsList = data.allTransactions;
-
-      allTransactionsList &&
-        allTransactionsList.sort((a, b) => a.date < b.date);
-
       if (isMounted) {
         setAllTransactionsInfoBalance(data);
-        setAllTransactionsDetails(allTransactionsList);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }, [isMounted]);
+
+  const getLastTenTransactions = useCallback(async () => {
+    try {
+      const { data } = await lastTenTransactions();
+
+      if (isMounted) {
+        setAllTransactionsDetails(data.lastTenTransactions);
       }
     } catch (error) {
       console.error(error);
@@ -52,7 +58,8 @@ const Dashboard = () => {
   useEffect(() => {
     getAllTransactionsInfo();
     getAllCategories();
-  }, [getAllTransactionsInfo, getAllCategories]);
+    getLastTenTransactions();
+  }, [getAllTransactionsInfo, getAllCategories, getLastTenTransactions]);
 
   return (
     <Box

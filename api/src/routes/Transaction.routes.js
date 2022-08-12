@@ -5,6 +5,7 @@ const {
   updateTransaction,
   deleteTransaction,
   getNumberOfTransactionsByCategory,
+  lastTenTransactions,
 } = require("../Controllers/Transaction.Controllers.js");
 
 const transactionRoutes = express.Router();
@@ -12,6 +13,8 @@ const transactionRoutes = express.Router();
 transactionRoutes.post("/create-transaction", createTransaction);
 
 transactionRoutes.get("/all-transactions", allTransactions);
+
+transactionRoutes.get("/last-ten-transactions", lastTenTransactions);
 
 transactionRoutes.put("/update-transaction", updateTransaction);
 

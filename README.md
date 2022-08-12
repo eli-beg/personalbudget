@@ -133,9 +133,11 @@ Server on Node/express with the following routes
     - Verifies the user and creates the transaction with the registered information and the user id: type, concept, amount, date, status: "active", and userId. If it has a category, assign categoryId. Returns the created transaction.
     - If the user is not verified or the transaction is not created, it returns the error code and corresponding message.
 
- - GET /transaction/alltransactions:
+ - GET /transaction/all-transactions:
    - Verifies user and searches all the transactions corresponding to that user and that its status is "active". Returns all transactions, income, expenses, and also the sum of income, expenses and final balance.          
-   
+  
+   - GET /transaction/last-ten-transactions:
+   - Verifies user and searches the last ten transactions created corresponding to that user and that its status is "active". Returns the last ten transactions, and the count of all transactions actives. 
 
  - PUT /transaction/update-transaction:
    - Verify user and edit attributes of the transaction such as: concept, amount, date or category. Returns the edited transaction.      

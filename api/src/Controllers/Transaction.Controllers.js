@@ -86,6 +86,34 @@ const allTransactions = async (req, res) => {
   }
 };
 
+const lastTenTransactions = async (req, res) => {
+  try {
+    const authorization = req.get("Authorization");
+
+    const aprobedUser = await verifyUser(authorization);
+    if (aprobedUser) {
+      const { count, rows } = await Transaction.findAndCountAll({
+        where: {
+          status: "active",
+          userId: aprobedUser.id,
+        },
+        order: [["createdAt", "DESC"]],
+        limit: 10,
+      });
+
+      return res.status(200).send({
+        ok: true,
+        lastTenTransactions: rows,
+      });
+    }
+  } catch (error) {
+    return res.status(400).send({
+      ok: false,
+      msg: error,
+    });
+  }
+};
+
 const updateTransaction = async (req, res) => {
   const { id, concept, amount, date, categoryId } = req.body;
 
@@ -206,6 +234,7 @@ const getNumberOfTransactionsByCategory = async (req, res) => {
 module.exports = {
   createTransaction,
   allTransactions,
+  lastTenTransactions,
   updateTransaction,
   deleteTransaction,
   getNumberOfTransactionsByCategory,

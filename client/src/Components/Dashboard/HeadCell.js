@@ -40,14 +40,14 @@ const HeadCell = ({
       id: "date",
       sortLabel: true,
       filterLabel: false,
-      label: "Date",
+      label: "Transaction Date",
     },
     {
       id: "type",
       sortLabel: false,
       filterLabel: true,
       options: typeObject,
-      label: "Type of Transaction",
+      label: "Transaction Type",
     },
 
     {
