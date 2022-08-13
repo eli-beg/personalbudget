@@ -9,6 +9,11 @@ const useUserStorage = () => {
 
     axios.defaults.headers.common["Authorization"] = `Bearer ${user.token}`;
   };
+
+  const deleteUserInStorage = () => {
+    localStorage.removeItem("loggedNoteAppUser");
+  };
+
   useEffect(() => {
     const loggedNoteAppUser = localStorage.getItem("loggedNoteAppUser");
     const user = loggedNoteAppUser && JSON.parse(loggedNoteAppUser);
@@ -17,6 +22,7 @@ const useUserStorage = () => {
   return {
     user,
     setUserInStorage,
+    deleteUserInStorage,
   };
 };
 export default useUserStorage;
