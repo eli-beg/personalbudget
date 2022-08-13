@@ -17,10 +17,16 @@ import pig from "../../images/pig.jpg";
 const MenuCard = () => {
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
+  const drawerWidth = 240;
 
   return (
     <Box>
-      <Grid container direction="column" alignItems="flex-start">
+      <Grid
+        container
+        direction="column"
+        alignItems="flex-start"
+        sx={{ width: drawerWidth }}
+      >
         <Grid
           container
           item
@@ -32,7 +38,7 @@ const MenuCard = () => {
             height: "120px",
           }}
         >
-          <Grid container item>
+          <Grid container item alignItems="center">
             <Grid
               item
               sx={{
@@ -50,24 +56,29 @@ const MenuCard = () => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item sx={{ width: "100%" }}>
-          <List>
+        <Grid container item>
+          <List sx={{ width: "100%", padding: " 0px" }}>
             <ListItem nested display="flex">
               <Grid container display="flex" direction="column">
+                <Grid item display="flex" direction="column">
+                  <Link
+                    to="/dashboard"
+                    style={{ textDecoration: "none", width: "100%" }}
+                  >
+                    <ListItemButton>
+                      <ListItemText sx={{ marginLeft: "25px" }}>
+                        Dashboard
+                      </ListItemText>
+                    </ListItemButton>
+                  </Link>
+                </Grid>
                 <Grid item>
-                  <ListItem>
-                    <Link to="/dashboard" style={{ textDecoration: "none" }}>
-                      <ListItemButton>
-                        <ListItemText>Dashboard</ListItemText>
-                      </ListItemButton>
-                    </Link>
-                  </ListItem>
                   <Divider variant="middle" />
                 </Grid>
                 <Grid item>
                   <ListItemButton onClick={() => setOpen(!open)}>
                     <KeyboardArrowDown
-                      sx={{ transform: open ? "inital" : "rotate(-90deg)" }}
+                      sx={{ transform: open ? "initial" : "rotate(-90deg)" }}
                     />
                     <ListItemText>Transactions</ListItemText>
                   </ListItemButton>
@@ -114,7 +125,7 @@ const MenuCard = () => {
                 <Grid item>
                   <ListItemButton onClick={() => setOpen2(!open2)}>
                     <KeyboardArrowDown
-                      sx={{ transform: open2 ? "inital" : "rotate(-90deg)" }}
+                      sx={{ transform: open2 ? "initial" : "rotate(-90deg)" }}
                     />
                     <ListItemText>Categories</ListItemText>
                   </ListItemButton>

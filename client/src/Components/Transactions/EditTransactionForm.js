@@ -41,11 +41,13 @@ const EditTransactionForm = ({
       .string()
       .min(3, "Too Short!")
       .max(50, "Too Long!")
-      .required("Concept is Required!"),
+      .required("Please provide a concept"),
     amount: yup
       .number()
+      .typeError("Amount must be a number")
       .integer("Only integer numbers")
-      .positive("Only positive numbers"),
+      .positive("Only positive numbers")
+      .required("Please provide an amount"),
     date: yup.date(),
   });
 

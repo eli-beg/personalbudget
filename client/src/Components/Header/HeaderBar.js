@@ -1,14 +1,25 @@
 import React, { useState } from "react";
-import { AppBar, Chip, IconButton, Toolbar } from "@mui/material";
+import {
+  AppBar,
+  Chip,
+  Grid,
+  IconButton,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 import Menu from "@mui/icons-material/Menu";
 import { Box } from "@mui/system";
 import UserMenu from "./UserMenu";
 import MenuUserSettings from "./MenuUserSettings";
+import pig from "../../images/pig.jpg";
+import useUserStorage from "../../hooks/useUserStorage";
 
 const HeaderBar = ({ handleDrawerToggle }) => {
+  const [anchorEl, setAnchorEl] = useState(null);
+
   const drawerWidth = 240;
 
-  const [anchorEl, setAnchorEl] = useState(null);
+  const { user } = useUserStorage();
 
   const handleOpenMenu = (e) => {
     setAnchorEl(e.currentTarget);
@@ -40,14 +51,40 @@ const HeaderBar = ({ handleDrawerToggle }) => {
         >
           <Menu />
         </IconButton>
-        <Box sx={{ flexGrow: 2 }}></Box>
+        <Grid
+          item
+          sx={{
+            backgroundImage: `url(${pig})`,
+            backgroundSize: "cover",
+            width: "60px",
+            height: "60px",
+            display: { md: "none" },
+          }}
+        ></Grid>
+        <Typography
+          sx={{ display: { md: "none" } }}
+          variant="h6"
+          color="text.blueGrey.600"
+        >
+          pBudgetApp
+        </Typography>
+        <Box sx={{ flexGrow: 2 }}>
+          <Typography
+            varian="h6"
+            color="text.blueGrey.600"
+            sx={{ display: { xs: "none", sm: "none", md: "block" } }}
+          >
+            Welcome {user && user.userFirstname} !
+          </Typography>
+        </Box>
         <Box sx={{ flexGrow: 0.3 }}>
           <Chip
             clickable
             onClick={handleOpenMenu}
             icon={<UserMenu />}
             sx={{
-              width: "110px",
+              paddingLeft: "20px",
+              width: "125px",
               height: "50px",
               borderRadius: "20px",
             }}

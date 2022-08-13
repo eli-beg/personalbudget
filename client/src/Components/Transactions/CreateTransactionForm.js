@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Autocomplete,
   Button,
@@ -49,11 +49,13 @@ const CreateTransactionForm = ({ allCategories, getAllCategories }) => {
       .string()
       .min(3, "Too Short!")
       .max(50, "Too Long!")
-      .required("Concept is Required!"),
+      .required("Please provide a concept"),
     amount: yup
       .number()
+      .typeError("Amount must be a number")
       .integer("Only integer numbers")
-      .positive("Only positive numbers"),
+      .positive("Only positive numbers")
+      .required("Please provide an amount"),
   });
 
   const formik = useFormik({
@@ -85,7 +87,7 @@ const CreateTransactionForm = ({ allCategories, getAllCategories }) => {
 
   return (
     <form onReset={formik.handleReset}>
-      <Grid container justifyContent="center">
+      <Grid container display="flex" justifyContent="center">
         <Grid
           item
           container
@@ -94,9 +96,10 @@ const CreateTransactionForm = ({ allCategories, getAllCategories }) => {
           justifyContent="center"
           spacing={2}
           marginTop="55px"
+          marginLeft="2px"
           padding="20px"
           xs={11}
-          lg={6}
+          lg={5}
           sx={{
             borderRadius: "7px",
             borderStyle: "solid",
@@ -111,7 +114,7 @@ const CreateTransactionForm = ({ allCategories, getAllCategories }) => {
           </Grid>
           <Grid container item>
             <Grid container item xs={12} direction="column">
-              <Typography variant="h8" color="text.secondary">
+              <Typography variant="h7" color="text.secondary">
                 Type of Transaction
               </Typography>
               <FormGroup>
@@ -148,7 +151,6 @@ const CreateTransactionForm = ({ allCategories, getAllCategories }) => {
               <TextField
                 fullWidth
                 hiddenLabel
-                variant="filled"
                 size="small"
                 name="concept"
                 value={formik.values.concept}
@@ -162,7 +164,6 @@ const CreateTransactionForm = ({ allCategories, getAllCategories }) => {
               <TextField
                 fullWidth
                 hiddenLabel
-                variant="filled"
                 size="small"
                 name="amount"
                 value={formik.values.amount}

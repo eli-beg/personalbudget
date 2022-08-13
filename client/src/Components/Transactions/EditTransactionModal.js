@@ -1,5 +1,5 @@
 import React from "react";
-import { Dialog, DialogContent, DialogTitle } from "@mui/material";
+import { Dialog, DialogContent, DialogTitle, Typography } from "@mui/material";
 import EditTransactionForm from "./EditTransactionForm";
 
 const EditTransactionModal = ({
@@ -12,7 +12,11 @@ const EditTransactionModal = ({
 }) => {
   return (
     <Dialog open={openEditModal} onClose={handleCloseEditModal}>
-      <DialogTitle>Edit transaction</DialogTitle>
+      <DialogTitle>
+        <Typography variant="h6" color="text.primary">
+          Edit transaction
+        </Typography>
+      </DialogTitle>
       <DialogContent>
         <EditTransactionForm
           transaction={transactionSelected}

@@ -71,13 +71,13 @@ const AllCategories = () => {
         container
         marginTop={6}
         padding={2}
-        columnSpacing={4}
+        rowSpacing={4}
         justifyContent="space-around"
       >
         <Grid item lg={3}>
           <Doughnut data={data} />
         </Grid>
-        <Grid item lg={6}>
+        <Grid item xs={12} lg={6}>
           <Box
             sx={{
               backgroundColor: "white",
