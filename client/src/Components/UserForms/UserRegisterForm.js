@@ -12,6 +12,7 @@ import {
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { createApiUser } from "../../Api/User";
+import { Link } from "react-router-dom";
 
 const UserRegisterForm = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -21,19 +22,19 @@ const UserRegisterForm = () => {
       .string()
       .min(3, "Too Short!")
       .max(50, "Too Long!")
-      .required("Name is Required!"),
+      .required("Please enter your firstname"),
     lastname: yup
       .string()
       .min(3, "Too Short!")
       .max(50, "Too Long!")
-      .required("LastName is Required!"),
+      .required("Please enter your lastname"),
     email: yup
       .string()
       .email("Must be a valid e-mail")
-      .required("Email is Required!"),
+      .required("Please enter your email"),
     password: yup
       .string()
-      .required("Please Enter your password")
+      .required("Please enter your password")
       //  .matches(
       //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
       //   "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
@@ -97,10 +98,11 @@ const UserRegisterForm = () => {
           <Typography variant="h6" color="text.primary">
             SIGN UP
           </Typography>
-          {/* separador, y link */}
-          <Typography variant="h8" color="text.blueGrey.400">
-            Already have an account?
-          </Typography>
+          <Link to="/welcome-screen">
+            <Typography variant="h8" color="text.blueGrey.400">
+              Already have an account?
+            </Typography>
+          </Link>
         </Grid>
         <Grid container item justifyContent="center" padding="10px">
           <form onSubmit={formik.handleSubmit}>
@@ -113,7 +115,9 @@ const UserRegisterForm = () => {
                   label="First name"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  helperText={formik.errors.firstname}
+                  helperText={
+                    formik.touched.firstname && formik.errors.firstname
+                  }
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -124,11 +128,17 @@ const UserRegisterForm = () => {
                   label="Last name"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  helperText={formik.errors.lastname}
+                  helperText={formik.touched.lastname && formik.errors.lastname}
                 />
               </Grid>
             </Grid>
-            <Grid container item spacing={2} direction="column">
+            <Grid
+              container
+              item
+              spacing={2}
+              direction="column"
+              justifyContent="center"
+            >
               <Grid item>
                 <TextField
                   fullWidth
@@ -137,7 +147,7 @@ const UserRegisterForm = () => {
                   label="Email"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  helperText={formik.errors.email}
+                  helperText={formik.touched.email && formik.errors.email}
                 />
               </Grid>
               <Grid item>
@@ -149,10 +159,10 @@ const UserRegisterForm = () => {
                   label="Password"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  helperText={formik.errors.password}
+                  helperText={formik.touched.password && formik.errors.password}
                 />
               </Grid>
-              <Grid item>
+              <Grid container item justifyContent="center">
                 <Button type="submit">Sing Up</Button>
               </Grid>
             </Grid>

@@ -30,7 +30,7 @@ const HeadCellsCategories = ({ handleOrderCategories, order }) => {
       {headCells &&
         headCells.map((headCell, index) =>
           headCell.sortLabel ? (
-            <TableCell sx={{ fontWeight: "bold" }}>
+            <TableCell sx={{ fontWeight: "bold", width: "20%" }}>
               <TableSortLabel
                 key={headCell.id}
                 direction={order}
@@ -40,7 +40,9 @@ const HeadCellsCategories = ({ handleOrderCategories, order }) => {
               </TableSortLabel>
             </TableCell>
           ) : (
-            <TableCell sx={{ fontWeight: "bold" }}>{headCell.label}</TableCell>
+            <TableCell sx={{ fontWeight: "bold", width: "10%" }}>
+              {headCell.label}
+            </TableCell>
           )
         )}
     </>

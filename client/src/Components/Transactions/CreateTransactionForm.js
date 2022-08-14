@@ -156,7 +156,7 @@ const CreateTransactionForm = ({ allCategories, getAllCategories }) => {
                 value={formik.values.concept}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                helperText={formik.errors.concept}
+                helperText={formik.touched.concept && formik.errors.concept}
               />
             </Grid>
             <Grid container item xs={12}>
@@ -169,7 +169,7 @@ const CreateTransactionForm = ({ allCategories, getAllCategories }) => {
                 value={formik.values.amount}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                helperText={formik.errors.amount}
+                helperText={formik.touched.amount && formik.errors.amount}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">$</InputAdornment>

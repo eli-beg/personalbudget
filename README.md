@@ -1,4 +1,8 @@
-# 💰pBudgetApp
+# ![Optinal Text](/images/pigread.jpg)   pBudgetApp
+
+
+
+
 
 #### Manage your personal budget, track your incomes and record your expenses 🚀
 
@@ -45,6 +49,8 @@ _______________________________________________________________________________
 
 ### Welcome Screen
 
+![Optinal Text](/images/welcomescreen.jpg)
+
 - Welcome message
 - User login to enter the home
 - User register
@@ -54,6 +60,10 @@ _______________________________________________________________________________
 ### Starting Board
 
  ### Dashboard
+
+  ![Optinal Text](/images/dashboard.jpg)
+
+  
  - Totals area: each card shows the totals of "Incomes", "Expenses" and their "Balance"
  - Table with list of the last 10 transactions. Among the functionalities it contains:
     - Ascending and descending order according to "date" or "amount"
@@ -85,11 +95,14 @@ _______________________________________________________________________________
            - Icon to delete a category
       - Create category:
         - Form to create a category assign it the name
+
+![Optinal Text](/images/allcategories.jpg)        
             
 ### Header
- ####Header:
-  		 login:
-		 boton de login /logout .. etc 
+ 
+  - Welcome message
+  - Avatar and settings icon for logout
+  
 
 _______________________________________________________________________________
 
@@ -102,11 +115,11 @@ A relational database model is used with the following entities and attributes:
 
 
 	
-//agrego aca que hashee con bcrypt y puse id con uuid??? //
+
 
 ### Relaciones
 
-Las relaciones entre tablas son de 1 a muchos:
+Relationships between tables are 1-to-many:
 
 ![Optinal Text](/images/relations.jpg)
 
@@ -144,20 +157,22 @@ Server on Node/express with the following routes
  
  - PUT /transaction/delete-transaction
    - Verifies user, looks for the transaction to delete and performs an update, modifies its status going from "active to "inactive". If successful, it displays a message "Transaction has been removed!"
-
-  - GET /transaction/get-number-of-transactions-by-category
+  
+ - GET /transaction/get-number-of-transactions-by-category
    - Verify user and search all categories of the same. Then count for each category how many transactions it has. Return all the categories of the user and the counter of each one.
+   
 
   ### Category
 
-  -  POST /category/create-category
-    - Verify user and create the category with a name, status: "active" and the corresponding userId of the user. Returns the new category
-  -  GET /category/get-categories
+-  POST /category/create-category
+   - Verify user and create the category with a name, status: "active" and the corresponding userId of the user. Returns the new category
+-  GET /category/get-categories
     - Verify user and find all user categories that have status: "active". Return all categories
-  -  PUT /category/update-categories
+-  PUT /category/update-categories
     - Verify user, search for the category and edit the name of it. Returns the edited category
-  -  PUT /category/delete-categories
+-  PUT /category/delete-categories
     - Verify user, search for the category and modify its status from "active" to "inactive". Returns the message: "The category has been removed"
+    
 
 _______________________________________________________________________________
 							

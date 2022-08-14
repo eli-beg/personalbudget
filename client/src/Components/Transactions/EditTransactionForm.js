@@ -94,7 +94,6 @@ const EditTransactionForm = ({
           <TextField
             fullWidth
             hiddenLabel
-            variant="filled"
             size="small"
             name="type"
             value={formik.values.type}
@@ -109,13 +108,12 @@ const EditTransactionForm = ({
           <TextField
             fullWidth
             hiddenLabel
-            variant="filled"
             size="small"
             name="concept"
             value={formik.values.concept}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            helperText={formik.errors.concept}
+            helperText={formik.touched.concept && formik.errors.concept}
           />
         </Grid>
 
@@ -124,13 +122,12 @@ const EditTransactionForm = ({
           <TextField
             fullWidth
             hiddenLabel
-            variant="filled"
             size="small"
             name="amount"
             value={formik.values.amount}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            helperText={formik.errors.amount}
+            helperText={formik.touched.amount && formik.errors.amount}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">$</InputAdornment>
@@ -206,7 +203,7 @@ const EditTransactionForm = ({
             value={formik.values.date}
             onChange={(e) => handleChangeDate(formik.setFieldValue, e)}
             onBlur={formik.handleBlur}
-            helperText={formik.errors.date}
+            helperText={formik.touched.date && formik.errors.date}
             renderInput={(params) => <TextField {...params} />}
             fullWidth
           />

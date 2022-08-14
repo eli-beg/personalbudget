@@ -69,10 +69,11 @@ const AllCategories = () => {
     >
       <Grid
         container
-        marginTop={6}
         padding={2}
+        marginTop={8}
         rowSpacing={4}
         justifyContent="space-around"
+        height="100%"
       >
         <Grid item lg={3}>
           <Doughnut data={data} />

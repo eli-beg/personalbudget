@@ -11,8 +11,17 @@ import useUserStorage from "../../hooks/useUserStorage";
 const UserLoginForm = () => {
   const navigate = useNavigate();
   const validationSchema = yup.object({
-    email: yup.string(),
-    password: yup.string(),
+    email: yup
+      .string()
+      .email("Must be a valid e-mail")
+      .required("Please enter your email"),
+    password: yup
+      .string()
+      .required("Please enter your password")
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.{8,})/,
+        "Must Contain 8 Characters, One Uppercase"
+      ),
   });
   const { setUserInStorage } = useUserStorage();
 
@@ -51,7 +60,7 @@ const UserLoginForm = () => {
               label="Email"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              helperText={formik.errors.email}
+              helperText={formik.touched.email && formik.errors.email}
             />
           </Grid>
           <Grid item>
@@ -62,7 +71,7 @@ const UserLoginForm = () => {
               label="Password"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              helperText={formik.errors.password}
+              helperText={formik.touched.password && formik.errors.password}
             />
           </Grid>
           <Grid item>

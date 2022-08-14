@@ -68,7 +68,7 @@ const HeaderBar = ({ handleDrawerToggle }) => {
         >
           pBudgetApp
         </Typography>
-        <Box sx={{ flexGrow: 2 }}>
+        <Box sx={{ flexGrow: 10 }}>
           <Typography
             varian="h6"
             color="text.blueGrey.600"

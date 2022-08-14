@@ -96,7 +96,7 @@ const ListOfCategoriesCard = ({
               categoriesSorted.map((category) => (
                 <TableRow>
                   <TableCell>{category.name}</TableCell>
-                  <TableCell>{category.count}</TableCell>
+                  <TableCell align="center">{category.count}</TableCell>
                   <TableCell>
                     <IconButton onClick={() => handleOpenEditModal(category)}>
                       <EditIcon />

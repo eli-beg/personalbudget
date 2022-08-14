@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import UserLoginForm from "../UserForms/UserLoginForm";
 
@@ -36,15 +36,9 @@ const Login = () => {
           <UserLoginForm />
         </Grid>
         <Grid container item direction="column" alignItems="center">
-          <Button
-            variant="outlined"
-            size="large"
-            sx={{ width: "200px", margin: "20px" }}
-          >
-            <Link to="register" style={{ textDecoration: "none" }}>
-              Register
-            </Link>
-          </Button>
+          <Link to="register" style={{ textDecoration: "none" }}>
+            <Button>Register</Button>
+          </Link>
         </Grid>
       </Grid>
     </Grid>

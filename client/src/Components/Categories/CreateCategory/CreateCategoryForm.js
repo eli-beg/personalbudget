@@ -18,7 +18,7 @@ const CreateCategoryForm = () => {
       .string()
       .min(3, "Too Short!")
       .max(50, "Too Long!")
-      .required("Name is Required!"),
+      .required("Please enter a name for the category"),
   });
 
   const formik = useFormik({
@@ -50,19 +50,26 @@ const CreateCategoryForm = () => {
 
   return (
     <form onReset={formik.handleReset}>
-      <Grid container>
-        <Grid>
+      <Grid
+        container
+        direction="row"
+        justifyContent="space-around"
+        width="100%"
+        spacing={2}
+      >
+        <Grid item>
           <TextField
             placeholder="Name"
             name="name"
             value={formik.values.name}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
+            helperText={formik.touched.name && formik.errors.name}
           >
             Name
           </TextField>
         </Grid>
-        <Grid>
+        <Grid item>
           <Button
             type="button"
             disabled={formik.isSubmitting}
