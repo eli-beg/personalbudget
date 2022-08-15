@@ -6,7 +6,6 @@ const createApiUser = async (value) => {
 };
 
 const loginApiUser = async (value) => {
-  console.log(axios);
   return await axios.post(`${API_PATH}/user/login-user`, value);
 };
 

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Home from "./Pages/Home";
 import WelcomeScreen from "./Pages/WelcomeScreen";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./themeConfig";
 import { LocalizationProvider } from "@mui/x-date-pickers";
@@ -15,8 +15,12 @@ import CreateCategory from "./Pages/CreateCategory";
 import Dashboard from "./Pages/Dashboard";
 import RegisterScreen from "./Pages/RegisterScreen";
 import Login from "./Components/WelcomeScreen/Login";
+import useUserStorage from "./hooks/useUserStorage";
+import PrivateRoutes from "./PrivateRoutes";
 
 function App() {
+  const { user } = useUserStorage();
+
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <ThemeProvider theme={theme}>
@@ -26,17 +30,22 @@ function App() {
             <Route path="register" element={<RegisterScreen />} />
           </Route>
 
-          <Route path="/" element={<Home />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/expenses-details" element={<ExpensesDetails />} />
-            <Route path="/incomes-details" element={<IncomesDetails />} />
-            <Route
-              path="/all-transactions-details"
-              element={<AllTransactionsDetails />}
-            />
-            <Route path="/create-transaction" element={<CreateTransaction />} />
-            <Route path="all-categories" element={<AllCategories />} />
-            <Route path="create-category" element={<CreateCategory />} />
+          <Route element={<PrivateRoutes user={user} />}>
+            <Route path="/" element={<Home />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/expenses-details" element={<ExpensesDetails />} />
+              <Route path="/incomes-details" element={<IncomesDetails />} />
+              <Route
+                path="/all-transactions-details"
+                element={<AllTransactionsDetails />}
+              />
+              <Route
+                path="/create-transaction"
+                element={<CreateTransaction />}
+              />
+              <Route path="all-categories" element={<AllCategories />} />
+              <Route path="create-category" element={<CreateCategory />} />
+            </Route>
           </Route>
         </Routes>
       </ThemeProvider>
