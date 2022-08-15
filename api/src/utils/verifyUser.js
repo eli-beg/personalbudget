@@ -17,9 +17,7 @@ const verifyUser = async (authorization) => {
   }
 
   if (!token || !decodedToken.id) {
-    return res.status(401).send({
-      error: "token missing or invalid",
-    });
+    return false;
   } else return decodedToken;
 };
 module.exports = { verifyUser };

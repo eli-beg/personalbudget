@@ -1,7 +1,5 @@
 const express = require("express");
 const { Category } = require("../db");
-const { SECRET } = process.env;
-const jwt = require("jsonwebtoken");
 const { verifyUser } = require("../utils/verifyUser");
 
 const createCategory = async (req, res) => {
@@ -10,6 +8,7 @@ const createCategory = async (req, res) => {
     const authorization = req.get("Authorization");
 
     const aprobedUser = await verifyUser(authorization);
+
     if (aprobedUser) {
       const [newCategory, created] = await Category.findOrCreate({
         where: { name: name, status: "active", userId: aprobedUser.id },

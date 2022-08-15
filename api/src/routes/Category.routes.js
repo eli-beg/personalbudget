@@ -5,15 +5,16 @@ const {
   getCategories,
   updateCategory,
 } = require("../Controllers/Category.controllers");
+const { validateAuth } = require("../middleware/validateAuth");
 
 const categoryRoutes = express.Router();
 
-categoryRoutes.post("/create-category", createCategory);
+categoryRoutes.post("/create-category", validateAuth, createCategory);
 
-categoryRoutes.get("/get-categories", getCategories);
+categoryRoutes.get("/get-categories", validateAuth, getCategories);
 
-categoryRoutes.put("/update-category", updateCategory);
+categoryRoutes.put("/update-category", validateAuth, updateCategory);
 
-categoryRoutes.put("/delete-category", deleteCategory);
+categoryRoutes.put("/delete-category", validateAuth, deleteCategory);
 
 module.exports = categoryRoutes;

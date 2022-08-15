@@ -59,7 +59,7 @@ const loginUser = async (req, res) => {
   const { email, password } = req.body;
   try {
     const userValues = await User.findOne({
-      where: { email: email },
+      where: { email: email, status: "active" },
       attributes: ["firstname", "lastname", "email", "password", "id"],
     });
 

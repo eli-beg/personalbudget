@@ -24,7 +24,6 @@ const CreateCategoryForm = () => {
   const formik = useFormik({
     initialValues: {
       name: "",
-      userId: null,
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
