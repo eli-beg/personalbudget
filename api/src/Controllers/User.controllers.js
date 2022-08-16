@@ -3,6 +3,7 @@ const { User } = require("../db");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { SECRET } = process.env;
+const { verifyUser } = require("../utils/verifyUser");
 
 const createUser = async (req, res) => {
   const { firstname, lastname, email, password } = req.body;
@@ -31,21 +32,26 @@ const createUser = async (req, res) => {
 const deleteUser = async (req, res) => {
   const { id } = req.body;
   try {
-    const deleteUser = await User.update(
-      {
-        status: "inactive",
-      },
-      {
-        where: {
-          id: id,
+    const authorization = req.get("Authorization");
+
+    const aprobedUser = await verifyUser(authorization);
+    if (aprobedUser) {
+      const deleteUser = await User.update(
+        {
+          status: "inactive",
         },
+        {
+          where: {
+            id: id,
+          },
+        }
+      );
+      if (deleteUser) {
+        return res.status(200).send({
+          ok: true,
+          deleteUser: "User has been removed!",
+        });
       }
-    );
-    if (deleteUser) {
-      return res.status(200).send({
-        ok: true,
-        deleteUser: "User has been removed!",
-      });
     }
   } catch (error) {
     return res.status(400).send({
@@ -85,7 +91,17 @@ const loginUser = async (req, res) => {
           id: userValues.dataValues.id,
           token,
         });
-      }
+      } else
+        return res.status(200).send({
+          ok: false,
+          msg: "Invalid email or password",
+        });
+    }
+    if (userValues === null) {
+      return res.status(200).send({
+        ok: false,
+        msg: "Invalid email or password",
+      });
     }
   } catch (error) {
     return res.status(401).send({

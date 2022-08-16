@@ -1,14 +1,24 @@
-import React from "react";
-import { Button, Grid, TextField } from "@mui/material";
+import React, { useState } from "react";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  Grid,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { Box } from "@mui/system";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { loginApiUser } from "../../Api/User";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import useUserStorage from "../../hooks/useUserStorage";
 
 const UserLoginForm = () => {
+  const [userInvalid, setUserInvalid] = useState(false);
+
   const navigate = useNavigate();
   const validationSchema = yup.object({
     email: yup
@@ -38,9 +48,12 @@ const UserLoginForm = () => {
       };
 
       const { data } = await loginApiUser(value);
-      if (data.ok) {
+      if (data.ok === true) {
         setUserInStorage(data);
-        navigate(`/dashboard`);
+        navigate("/dashboard");
+      }
+      if (data.ok === false) {
+        setUserInvalid(true);
       }
     },
   });
@@ -79,6 +92,20 @@ const UserLoginForm = () => {
           </Grid>
         </Grid>
       </form>
+      <Dialog open={userInvalid}>
+        <DialogContent>
+          <Typography>Your email or password are not correct</Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            component={Link}
+            to="/welcome-screen"
+            onClick={() => setUserInvalid(false)}
+          >
+            Ok
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 };

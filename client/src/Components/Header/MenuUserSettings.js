@@ -1,13 +1,21 @@
 import { Menu, MenuItem } from "@mui/material";
 import React, { useState } from "react";
+import UserDeleteModal from "./UserDeleteModal";
 import UserLogoutModal from "./UserLogoutModal";
 
 const MenuUserSettings = ({ open, anchorEl, handleCloseMenu }) => {
   const [openLogoutModal, setOpenLogoutModal] = useState(false);
+  const [openDeleteUser, setOpenDeleteUser] = useState(false);
 
   const handleOpenLogoutModal = () => {
     setOpenLogoutModal(true);
   };
+
+  const handleOpenDeleteUser = () => {
+    setOpenDeleteUser(true);
+    handleCloseMenu();
+  };
+
   return (
     <>
       <Menu
@@ -44,11 +52,18 @@ const MenuUserSettings = ({ open, anchorEl, handleCloseMenu }) => {
         }}
       >
         <MenuItem onClick={handleOpenLogoutModal}>Logout</MenuItem>
+        <MenuItem onClick={handleOpenDeleteUser}>Delete user</MenuItem>
       </Menu>
       <UserLogoutModal
         openLogoutModal={openLogoutModal}
         setOpenLogoutModal={setOpenLogoutModal}
         handleCloseMenu={handleCloseMenu}
+      />
+      <UserDeleteModal
+        openDeleteUser={openDeleteUser}
+        handleCloseMenu={handleCloseMenu}
+        handleOpenDeleteUser={handleOpenDeleteUser}
+        setOpenDeleteUser={setOpenDeleteUser}
       />
     </>
   );

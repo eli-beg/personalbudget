@@ -9,7 +9,7 @@ const userRoutes = express.Router();
 
 userRoutes.post("/create-user", createUser);
 
-userRoutes.delete("/delete-user", deleteUser); //todavia no la use y no se si la voy a usar
+userRoutes.put("/delete-user", deleteUser);
 
 userRoutes.post("/login-user", loginUser);
 

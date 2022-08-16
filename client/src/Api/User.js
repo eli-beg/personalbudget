@@ -9,4 +9,8 @@ const loginApiUser = async (value) => {
   return await axios.post(`${API_PATH}/user/login-user`, value);
 };
 
-export { createApiUser, loginApiUser };
+const deleteApiUser = async (value) => {
+  return await axios.put(`${API_PATH}/user/delete-user`, value);
+};
+
+export { createApiUser, loginApiUser, deleteApiUser };

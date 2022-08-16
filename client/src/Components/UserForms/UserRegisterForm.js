@@ -174,7 +174,13 @@ const UserRegisterForm = () => {
           <Typography>Your user has been created!</Typography>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setSubmitted(false)}>Ok</Button>
+          <Button
+            component={Link}
+            to="/welcome-screen"
+            onClick={() => setSubmitted(false)}
+          >
+            Ok
+          </Button>
         </DialogActions>
       </Dialog>
     </Box>
