@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Box } from "@mui/system";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import ListOfCategoriesCard from "../Components/Categories/ListOfCategoriesCard";
 import useIsMountedRef from "../hooks/useIsMountedRef";
 import { getNumberOfTransactions } from "../Api/Transactions";
@@ -62,7 +62,7 @@ const AllCategories = () => {
       sx={{
         marginTop: "60px",
         width: { xs: "100%", md: `calc(100% - ${drawerWidth}px)` },
-        height: "100vh",
+        height: { xs: "100%", md: "100vh" },
         backgroundColor: "#e0f2f1",
         borderRadius: "10px",
       }}
@@ -71,28 +71,32 @@ const AllCategories = () => {
         container
         padding={2}
         marginTop={8}
-        rowSpacing={4}
-        justifyContent="space-around"
-        height="100%"
+        display="flex"
+        direction="row"
+        justifyContent="center"
+        spacing={2}
+        xs={12}
       >
-        <Grid item lg={3}>
-          <Doughnut data={data} />
+        <Grid container item spacing={2} justifyContent="center" lg={6}>
+          <Grid item xs={6}>
+            <Typography align="center">
+              Number of transactions by category
+            </Typography>
+          </Grid>
+          <Grid item xs={10} lg={7}>
+            <Doughnut data={data} />
+          </Grid>
         </Grid>
-        <Grid item xs={12} lg={6}>
-          <Box
-            sx={{
-              backgroundColor: "white",
-              width: "100%",
-              height: "400px",
-              marginRight: "20px",
-              borderRadius: "6px",
-            }}
-          >
+        <Grid container item spacing={2} justifyContent="center" xs={12} lg={6}>
+          <Grid item xs={6}>
+            <Typography align="center">All Categories</Typography>
+          </Grid>
+          <Grid item xs={12}>
             <ListOfCategoriesCard
               counterOfTransactionsByCategory={counterOfTransactionsByCategory}
               getAllCategories={getAllCategories}
             />
-          </Box>
+          </Grid>
         </Grid>
       </Grid>
     </Box>

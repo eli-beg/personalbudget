@@ -8,6 +8,7 @@ import {
   ListItemButton,
   ListItemText,
   Grid,
+  Button,
 } from "@mui/material";
 
 import { Link } from "react-router-dom";
@@ -85,31 +86,43 @@ const MenuCard = () => {
                 </Grid>
 
                 {open && (
-                  <Grid item>
+                  <Grid item sx={{ marginLeft: "10px" }}>
                     <List>
                       <ListItem>
-                        <Link to="/expenses-details">
+                        <Link
+                          to="/expenses-details"
+                          style={{ textDecoration: "none" }}
+                        >
                           <ListItemButton>
                             <Typography>Expenses</Typography>
                           </ListItemButton>
                         </Link>
                       </ListItem>
                       <ListItem>
-                        <Link to="/incomes-details">
+                        <Link
+                          to="/incomes-details"
+                          style={{ textDecoration: "none" }}
+                        >
                           <ListItemButton>
                             <Typography>Incomes</Typography>
                           </ListItemButton>
                         </Link>
                       </ListItem>
                       <ListItem>
-                        <Link to="/all-transactions-details">
+                        <Link
+                          to="/all-transactions-details"
+                          style={{ textDecoration: "none" }}
+                        >
                           <ListItemButton>
                             <Typography>All Transactions</Typography>
                           </ListItemButton>
                         </Link>
                       </ListItem>
                       <ListItem>
-                        <Link to="/create-transaction">
+                        <Link
+                          to="/create-transaction"
+                          style={{ textDecoration: "none" }}
+                        >
                           <ListItemButton>
                             <Typography>Create Transaction</Typography>
                           </ListItemButton>
@@ -132,17 +145,23 @@ const MenuCard = () => {
                 </Grid>
 
                 {open2 && (
-                  <Grid item>
+                  <Grid item sx={{ marginLeft: "10px" }}>
                     <List>
                       <ListItem>
-                        <Link to="all-categories">
+                        <Link
+                          to="all-categories"
+                          style={{ textDecoration: "none" }}
+                        >
                           <ListItemButton>
                             <Typography>All Categories</Typography>
                           </ListItemButton>
                         </Link>
                       </ListItem>
                       <ListItem>
-                        <Link to="create-category">
+                        <Link
+                          to="create-category"
+                          style={{ textDecoration: "none" }}
+                        >
                           <ListItemButton>
                             <Typography>Create Category</Typography>
                           </ListItemButton>
@@ -154,6 +173,20 @@ const MenuCard = () => {
               </Grid>
             </ListItem>
           </List>
+        </Grid>
+        <Grid
+          container
+          item
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+          sx={{ width: drawerWidth, height: "100vh" }}
+        >
+          <Grid container item justifyContent="center">
+            <Link to="/create-transaction">
+              <Button variant="contained">Create Transaction</Button>
+            </Link>
+          </Grid>
         </Grid>
       </Grid>
     </Box>

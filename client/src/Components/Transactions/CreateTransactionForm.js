@@ -87,19 +87,28 @@ const CreateTransactionForm = ({ allCategories, getAllCategories }) => {
 
   return (
     <form onReset={formik.handleReset}>
-      <Grid container display="flex" justifyContent="center">
+      <Grid
+        container
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        sx={{
+          height: "100%",
+          padding: 0,
+        }}
+      >
         <Grid
           item
           container
-          direction="row"
-          wrap="wrap"
-          justifyContent="center"
-          spacing={2}
-          marginTop="55px"
-          marginLeft="2px"
-          padding="20px"
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          wrap="no-wrap"
+          px={5}
           xs={11}
-          lg={5}
+          sm={9}
+          md={9}
+          lg={6}
           sx={{
             borderRadius: "7px",
             borderStyle: "solid",
@@ -107,17 +116,17 @@ const CreateTransactionForm = ({ allCategories, getAllCategories }) => {
             backgroundColor: "whitesmoke",
           }}
         >
-          <Grid container item xs={12} justifyContent="center">
+          <Grid my={4} item xs={12} display="flex" justifyContent="center">
             <Typography variant="h6" color="text.primary">
               NEW TRANSACTION
             </Typography>
           </Grid>
-          <Grid container item>
-            <Grid container item xs={12} direction="column">
+          <Grid my={2} container item xs={12} spacing={2}>
+            <Grid item xs={12} direction="column">
               <Typography variant="h7" color="text.secondary">
-                Type of Transaction
+                Transaction Type*
               </Typography>
-              <FormGroup>
+              <FormGroup row="true">
                 <FormControlLabel
                   control={
                     <Checkbox
@@ -146,8 +155,8 @@ const CreateTransactionForm = ({ allCategories, getAllCategories }) => {
                 />
               </FormGroup>
             </Grid>
-            <Grid container item xs={12}>
-              <Typography>Concept</Typography>
+            <Grid item xs={12}>
+              <Typography>Concept*</Typography>
               <TextField
                 fullWidth
                 hiddenLabel
@@ -159,8 +168,8 @@ const CreateTransactionForm = ({ allCategories, getAllCategories }) => {
                 helperText={formik.touched.concept && formik.errors.concept}
               />
             </Grid>
-            <Grid container item xs={12}>
-              <Typography>Amount</Typography>
+            <Grid item xs={12}>
+              <Typography>Amount*</Typography>
               <TextField
                 fullWidth
                 hiddenLabel
@@ -177,7 +186,7 @@ const CreateTransactionForm = ({ allCategories, getAllCategories }) => {
                 }}
               />
             </Grid>
-            <Grid container item xs={12}>
+            <Grid item xs={12}>
               <Typography>Category</Typography>
               <Autocomplete
                 fullWidth
@@ -247,7 +256,7 @@ const CreateTransactionForm = ({ allCategories, getAllCategories }) => {
                 setOpenDialogCategory={setOpenDialogCategory}
               />
             </Grid>
-            <Grid container item xs={12} direction="column">
+            <Grid item xs={12}>
               <Typography>Date</Typography>
               <DesktopDatePicker
                 inputFormat="dd/MM/yyyy"
@@ -256,11 +265,11 @@ const CreateTransactionForm = ({ allCategories, getAllCategories }) => {
                 onBlur={formik.handleBlur}
                 helperText={formik.errors.date}
                 renderInput={(params) => <TextField {...params} />}
-                fullWidth
+                maxDate={new Date()}
               />
             </Grid>
           </Grid>
-          <Grid>
+          <Grid my={4} item xs={12}>
             <Button
               type="button"
               onClick={() => setOpenDialogSubmittingForm(true)}
@@ -272,19 +281,19 @@ const CreateTransactionForm = ({ allCategories, getAllCategories }) => {
               Clean
             </Button>
           </Grid>
-          <DialogSubmittingForm
-            openDialogSubmittingForm={openDialogSubmittingForm}
-            setOpenDialogSubmittingForm={setOpenDialogSubmittingForm}
-            dialogTitle={dialogTitle}
-            formikValues={formik.values}
-            formikSubmit={formikSubmit}
-            submittedValues={submitted}
-            setSubmitted={setSubmitted}
-            formikReset={formik.handleReset}
-            getAllCategories={getAllCategories}
-          />
         </Grid>
       </Grid>
+      <DialogSubmittingForm
+        openDialogSubmittingForm={openDialogSubmittingForm}
+        setOpenDialogSubmittingForm={setOpenDialogSubmittingForm}
+        dialogTitle={dialogTitle}
+        formikValues={formik.values}
+        formikSubmit={formikSubmit}
+        submittedValues={submitted}
+        setSubmitted={setSubmitted}
+        formikReset={formik.handleReset}
+        getAllCategories={getAllCategories}
+      />
     </form>
   );
 };

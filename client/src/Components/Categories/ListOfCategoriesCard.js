@@ -82,7 +82,7 @@ const ListOfCategoriesCard = ({
   return (
     <>
       <TableContainer>
-        <Table sx={{ minWidth: 650, backgroundColor: "white" }}>
+        <Table sx={{ minWidth: 250, backgroundColor: "white" }}>
           <TableHead>
             <TableRow>
               <HeadCellsCategories

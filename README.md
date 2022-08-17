@@ -1,4 +1,4 @@
-# ![Optinal Text](/images/pigread.jpg)   pBudgetApp
+# ![Optinal Text](/readmeImages/pigread.jpg)   pBudgetApp
 
 
 
@@ -7,11 +7,11 @@
 #### Manage your personal budget, track your incomes and record your expenses 🚀
 
 ## Table of Contents
-1. [General Info](#general-info)
-2. [Installation](#installation)
+1. [General Info](#1-General-Info)
+2. [Getting Started](#installation)
 3. [Project Structure and Funcionalities](#project-structure-and-funcionalities)
 4. [Technologies](#technologies)
-5. [Motivation](#motivation)
+5. [Motivation](#5-Motivation)
 
 _______________________________________________________________________________
 
@@ -23,7 +23,7 @@ This is a project in which a SPA is developed to manage the personal budget.
 It contains:
 
 - Registration form and user login to be able to register their operations.
-- Forms to be able to register the transactions, which can be Income or Expenses, and the detail that: "concept", " amount" and "date".
+- Forms to register the transactions, which can be Income or Expenses, and the detail that: "concept", " amount" and "date".
 -In the case of "Expenses", the registered operations can be categorized, creating categories and adding them as characteristics of the operation. Graphic visualization of categories and number of registered transactions of each one is added.
 -List of registered operations with data analysis: ordering (by "date" or "amount", ascending or descending), and filters according to "type of transaction" or "category" of expenses.
 - Visualization of total amounts of "Incomes", "Expenses" and "Total Balance".
@@ -32,13 +32,49 @@ It contains:
 _______________________________________________________________________________
 
 
-## 2-Installation
+## 2-Getting Started
 
-Para ello debes seguir los siguientes pasos:
+ To get a local copy up and running follow these simple example steps.
 
-1- forkear y clonar repo
+## Prerequisites
+  - NodeJs (^16.17.0)
+  - PostgreSQL
 
-IMPORTANTE: Es necesario contar minimamente con la última versión estable de Node y NPM. Asegurarse de contar con ella para poder instalar correctamente las dependecias necesarias para correr el proyecto.
+## Installation
+
+1. Clone the repo
+ - Navigate to the directory taht you would like to clone the repository and create a local copy on your machine using this command:
+  
+    ``` git clone https://github.com/eli-beg/personalbudget.git```
+ 
+2. Create an .env file in the root of the Api folder and add the database username and password values.
+
+   ``` 
+    DB_USER =
+    DB_PASSWORD =
+    DB_HOST = localhost
+    SECRET= '1234'  ```
+
+3. From the api folder install NPM packages
+
+    ``` npm install ```
+  
+4. Create database called "personalbudget"
+
+5. From the client folder install the npm packages
+
+   ``` npm install ```
+6. To start the apirest go to the Api folder and run 
+
+    ```npm start```
+7. To start the client application go to the client folder and run 
+
+    ```npm start```
+
+- The database will be running on the port that your computer has configured (by default 5450)
+- The client application runs on port 3000
+
+
 
 _______________________________________________________________________________
 
@@ -49,7 +85,7 @@ _______________________________________________________________________________
 
 ### Welcome Screen
 
-![Optinal Text](/images/welcomescreen.jpg)
+![Optinal Text](/readmeImages/welcomescreen.jpg)
 
 - Welcome message
 - User login to enter the home
@@ -61,7 +97,7 @@ _______________________________________________________________________________
 
  ### Dashboard
 
-  ![Optinal Text](/images/dashboard.jpg)
+  ![Optinal Text](/readmeImages/dashboard.jpg)
 
   
  - Totals area: each card shows the totals of "Incomes", "Expenses" and their "Balance"
@@ -95,13 +131,15 @@ _______________________________________________________________________________
            - Icon to delete a category
       - Create category:
         - Form to create a category assign it the name
+  - Button to create a new transaction
+  
 
-![Optinal Text](/images/allcategories.jpg)        
+![Optinal Text](/readmeImages/allcategories.jpg)        
             
 ### Header
  
   - Welcome message
-  - Avatar and settings icon for logout
+  - Avatar and settings icon for: logout and delete user
   
 
 _______________________________________________________________________________
@@ -111,7 +149,7 @@ _______________________________________________________________________________
 A relational database model is used with the following entities and attributes:
 
 
-![Optinal Text](/images/Diagram.jpg)
+![Optinal Text](/readmeImages/Diagram.jpg)
 
 
 	
@@ -121,7 +159,7 @@ A relational database model is used with the following entities and attributes:
 
 Relationships between tables are 1-to-many:
 
-![Optinal Text](/images/relations.jpg)
+![Optinal Text](/readmeImages/relations.jpg)
 
 
 

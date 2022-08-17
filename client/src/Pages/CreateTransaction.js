@@ -29,11 +29,12 @@ const CreateTransaction = () => {
   return (
     <Box
       sx={{
-        marginTop: "60px",
         width: { xs: "100%", md: `calc(100% - ${drawerWidth}px)` },
         height: "100vh",
         backgroundColor: "#e0f2f1",
         borderRadius: "10px",
+        display: "flex",
+        justifyContent: "center",
       }}
     >
       <CreateTransactionForm
