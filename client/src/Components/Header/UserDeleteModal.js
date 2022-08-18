@@ -8,17 +8,12 @@ import {
 } from "@mui/material";
 import { deleteApiUser } from "../../Api/User";
 import useUserStorage from "../../hooks/useUserStorage";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const UserDeleteModal = ({
-  handleCloseMenu,
-  setOpenDeleteUser,
-  openDeleteUser,
-}) => {
+const UserDeleteModal = ({ setOpenDeleteUser, openDeleteUser }) => {
   const [userRemoved, setUserRemoved] = useState(false);
   const { user } = useUserStorage();
   const { deleteUserInStorage } = useUserStorage();
-  const navigate = useNavigate();
 
   const userId = {
     id: user && user.id,

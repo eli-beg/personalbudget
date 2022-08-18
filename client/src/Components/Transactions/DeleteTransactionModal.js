@@ -20,8 +20,6 @@ const DeleteTransactionModal = ({
       </DialogTitle>
       <DialogActions>
         <Button onClick={() => removeTransaction()}>Yes</Button>
-      </DialogActions>
-      <DialogActions>
         <Button onClick={() => handleCloseDeleteModal()}>No</Button>
       </DialogActions>
     </Dialog>

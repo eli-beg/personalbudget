@@ -12,7 +12,12 @@ const WelcomeScreen = () => {
         height: "100%",
       }}
     >
-      <Grid container wrap="wrap" sx={{ minHeight: "100vh" }}>
+      <Grid
+        container
+        display="flex"
+        flexWrap="wrap"
+        sx={{ minHeight: "100vh" }}
+      >
         <Outlet />
         <WelcomeBackground />
       </Grid>

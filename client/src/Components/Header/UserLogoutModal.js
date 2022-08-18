@@ -26,6 +26,7 @@ const UserLogoutModal = ({
     setOpenLogoutModal(false);
     handleCloseMenu();
   };
+
   return (
     <>
       <Dialog open={openLogoutModal}>

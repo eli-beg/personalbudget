@@ -26,7 +26,7 @@ const ListOfTransactionsCard = ({
   const [openEditModal, setOpenEditModal] = useState(false);
   const [openModalDelete, setOpenModalDelete] = useState(false);
   const [closeDialogForm, setCloseDialogForm] = useState(false);
-  const [transactionsByDate, setTransactionsByDate] = useState(null);
+  const [transactionsSorted, setTransactionsSorted] = useState(null);
   const [transactionSelected, setTransactionSelected] = useState(null);
   const [sortField, setSortField] = useState("");
   const [order, setOrder] = useState("desc");
@@ -34,7 +34,7 @@ const ListOfTransactionsCard = ({
 
   useEffect(() => {
     if (transactionsDetails) {
-      setTransactionsByDate(transactionsDetails);
+      setTransactionsSorted(transactionsDetails);
     }
   }, [transactionsDetails, allCategories]);
 
@@ -47,48 +47,48 @@ const ListOfTransactionsCard = ({
       const transactionsFiltered = transactionsDetails.filter(
         (transaction) => transaction.type === value
       );
-      setTransactionsByDate(transactionsFiltered);
+      setTransactionsSorted(transactionsFiltered);
     } else {
       const transactionsFiltered = transactionsDetails.filter(
         (transaction) => transaction.categoryId === value
       );
       if (transactionsFiltered.length >= 1) {
-        setTransactionsByDate(transactionsFiltered);
+        setTransactionsSorted(transactionsFiltered);
       }
       if (transactionsFiltered.length === 0) {
         setOpenModalCategoryFilter(true);
       }
       if (transactionsFiltered.length === 0 && value === "all") {
         setOpenModalCategoryFilter(false);
-        setTransactionsByDate(transactionsDetails);
+        setTransactionsSorted(transactionsDetails);
       }
     }
   };
 
   const handleSorting = (sortField, order) => {
     if (sortField === "date" && order === "asc") {
-      const sorted = transactionsByDate.sort(
+      const sorted = transactionsSorted.sort(
         (a, b) => a[sortField] > b[sortField]
       );
-      setTransactionsByDate(sorted);
+      setTransactionsSorted(sorted);
     }
     if (sortField === "date" && order === "desc") {
-      const sorted = transactionsByDate.sort(
+      const sorted = transactionsSorted.sort(
         (a, b) => a[sortField] < b[sortField]
       );
-      setTransactionsByDate(sorted);
+      setTransactionsSorted(sorted);
     }
     if (sortField === "amount" && order === "asc") {
-      const sorted = transactionsByDate.sort(
+      const sorted = transactionsSorted.sort(
         (a, b) => a[sortField] - b[sortField]
       );
-      setTransactionsByDate(sorted);
+      setTransactionsSorted(sorted);
     }
     if (sortField === "amount" && order === "desc") {
-      const sorted = transactionsByDate.sort(
+      const sorted = transactionsSorted.sort(
         (a, b) => b[sortField] - a[sortField]
       );
-      setTransactionsByDate(sorted);
+      setTransactionsSorted(sorted);
     }
   };
 
@@ -157,8 +157,8 @@ const ListOfTransactionsCard = ({
             </TableHead>
 
             <TableBody>
-              {transactionsByDate &&
-                transactionsByDate.map((transaction) => (
+              {transactionsSorted &&
+                transactionsSorted.map((transaction) => (
                   <TableRow key={transaction.id}>
                     <TableCell>
                       {transaction.date

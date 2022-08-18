@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Grid } from "@mui/material";
 import BalanceCard from "../Components/Dashboard/BalanceCard";
 import IncomesCard from "../Components/Dashboard/IncomesCard";
@@ -10,14 +10,13 @@ import useIsMountedRef from "../hooks/useIsMountedRef";
 import { getCategories } from "../Api/Categories";
 
 const Dashboard = () => {
-  const drawerWidth = 240;
-
   const [allTransactionsInfoBalance, setAllTransactionsInfoBalance] =
     useState(null);
   const [allTransactionsDetails, setAllTransactionsDetails] = useState(null);
   const [allCategories, setAllCategories] = useState(null);
 
   const isMounted = useIsMountedRef();
+  const drawerWidth = 240;
 
   const getAllTransactionsInfo = useCallback(async () => {
     try {
@@ -78,7 +77,7 @@ const Dashboard = () => {
           marginTop: "16px",
         }}
       >
-        <Grid container spacing={2}>
+        <Grid container spacing={2} p={2}>
           <Grid item xs={12} sm={6} md={6} lg={4}>
             <BalanceCard
               allTransactionsInfoBalance={allTransactionsInfoBalance}
@@ -96,7 +95,8 @@ const Dashboard = () => {
           </Grid>
         </Grid>
 
-        <Grid container item xs={12} lg={12} sx={{ marginTop: "10px" }}>
+        <Grid container p={2} xs={12} lg={12} sx={{ marginTop: "10px" }}>
+          <Typography>Your last ten recorded transactions</Typography>
           <ListOfTransactionsCard
             transactionsDetails={allTransactionsDetails}
             allCategories={allCategories}
