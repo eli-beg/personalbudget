@@ -43,7 +43,6 @@ const MenuCard = () => {
             backgroundSize: "cover",
             width: "120px",
             height: "130px",
-            backgroundColor: "green",
           }}
         ></Grid>
         <Grid item width="100%">

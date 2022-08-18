@@ -95,8 +95,10 @@ const Dashboard = () => {
           </Grid>
         </Grid>
 
-        <Grid container p={2} xs={12} lg={12} sx={{ marginTop: "10px" }}>
-          <Typography>Your last ten recorded transactions</Typography>
+        <Grid container px={2} xs={12} lg={12} sx={{ marginTop: "10px" }}>
+          <Typography variant="h6" color="text.secondary">
+            Your last ten recorded transactions:
+          </Typography>
           <ListOfTransactionsCard
             transactionsDetails={allTransactionsDetails}
             allCategories={allCategories}

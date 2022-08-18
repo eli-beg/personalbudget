@@ -7,11 +7,11 @@
 #### Manage your personal budget, track your incomes and record your expenses 🚀
 
 ## Table of Contents
-1. [General Info](#1-General-Info)
-2. [Getting Started](#installation)
-3. [Project Structure and Funcionalities](#project-structure-and-funcionalities)
-4. [Technologies](#technologies)
-5. [Motivation](#5-Motivation)
+1. **General Info**
+2. **Getting Started**
+3. **Project Structure and Funcionalities**
+4. **Technologies**
+5. **Motivation**
 
 _______________________________________________________________________________
 
@@ -219,10 +219,10 @@ _______________________________________________________________________________
 							
 ## 4-Technologies 🛠
  
- ### Reactjs
+ ### ReactJs
  ### Material UI
  ### Express
- ### Sequelize-Postgresql
+ ### Sequelize-PostgreSql
  
 _______________________________________________________________________________
 

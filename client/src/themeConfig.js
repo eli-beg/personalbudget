@@ -1,6 +1,8 @@
 import { blueGrey } from "@mui/material/colors";
 import { createTheme } from "@mui/material/styles";
 
+const font = "'Lato', sans-serif";
+
 const theme = createTheme({
   breakpoints: {
     values: {
@@ -14,10 +16,12 @@ const theme = createTheme({
   boxSizing: "border-box",
   margin: 0,
   padding: 0,
-  h2: {
-    fontSize: "0.975rem",
-    fontWeight: 500,
+  h3: {
+    fontSize: "1.4rem",
+    color: "#2596be",
+    fontWeight: 700,
   },
+
   h5: {
     fontSize: "2.4",
     color: "#2596be",
@@ -46,11 +50,11 @@ const theme = createTheme({
       },
     },
   },
-  // typography: {
-  //   fontFamily: " 'Work Sans'",
-  //   fontSize: 14,
-  //   fontWeightLight: 300,
-  // },
+  typography: {
+    fontFamily: font,
+    fontWeight: 700,
+    fontSize: 14,
+  },
 
   components: {
     MuiListItemButton: {
@@ -88,13 +92,6 @@ const theme = createTheme({
       },
     },
   },
-  // MuiCssBaseline: {
-  //   styleOverrides: `@font-face{
-  //     font-family: 'Karla';
-  //     font-style: normal
-  //   }
-  //   `,
-  // },
 });
 
 export default theme;

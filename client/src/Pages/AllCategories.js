@@ -79,7 +79,7 @@ const AllCategories = () => {
       >
         <Grid container item spacing={2} justifyContent="center" lg={6}>
           <Grid item xs={6}>
-            <Typography align="center">
+            <Typography align="center" variant="h6" color="text.secondary">
               Number of transactions by category
             </Typography>
           </Grid>
@@ -89,7 +89,9 @@ const AllCategories = () => {
         </Grid>
         <Grid container item spacing={2} justifyContent="center" xs={12} lg={6}>
           <Grid item xs={6}>
-            <Typography align="center">All Categories</Typography>
+            <Typography align="center" variant="h6" color="text.secondary">
+              All Categories
+            </Typography>
           </Grid>
           <Grid item xs={12}>
             <ListOfCategoriesCard

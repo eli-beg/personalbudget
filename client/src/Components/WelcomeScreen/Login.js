@@ -18,7 +18,7 @@ const Login = () => {
       <Grid xs={10} lg={8} container item>
         <Grid container item justifyContent="center" padding="10px">
           <Grid item>
-            <Typography variant="h4" color="text.primary" textAlign="center">
+            <Typography variant="h3" color="text.primary" textAlign="center">
               Welcome to pBudgetApp!{" "}
             </Typography>
           </Grid>

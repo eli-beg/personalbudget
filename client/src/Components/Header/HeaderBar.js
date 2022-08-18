@@ -64,14 +64,16 @@ const HeaderBar = ({ handleDrawerToggle }) => {
         <Typography
           sx={{ display: { md: "none" } }}
           variant="h6"
-          color="text.blueGrey.600"
+          fontWeight="700"
+          color="text.secondary"
         >
           pBudgetApp
         </Typography>
         <Box sx={{ flexGrow: 10 }}>
           <Typography
-            varian="h6"
-            color="text.blueGrey.600"
+            variant="h6"
+            fontWeight="700"
+            color="text.primary"
             sx={{ display: { xs: "none", sm: "none", md: "block" } }}
           >
             Welcome {user && user.userFirstname} !
