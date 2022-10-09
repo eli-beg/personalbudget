@@ -29,9 +29,8 @@ function App() {
             <Route path="/welcome-screen" element={<Login />} />
             <Route path="register" element={<RegisterScreen />} />
           </Route>
-
-          <Route element={<PrivateRoutes user={user} />}>
-            <Route path="/" element={<Home />}>
+      
+          <Route path="/" element={<PrivateRoutes><Home /></PrivateRoutes>}>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/expenses-details" element={<ExpensesDetails />} />
               <Route path="/incomes-details" element={<IncomesDetails />} />
@@ -45,7 +44,7 @@ function App() {
               />
               <Route path="all-categories" element={<AllCategories />} />
               <Route path="create-category" element={<CreateCategory />} />
-            </Route>
+            
           </Route>
         </Routes>
       </ThemeProvider>

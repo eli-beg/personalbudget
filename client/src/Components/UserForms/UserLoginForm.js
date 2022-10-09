@@ -13,10 +13,12 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { loginApiUser } from "../../Api/User";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux'
+import { setUserData } from "../../App/auth/authSlice";
 
-import useUserStorage from "../../hooks/useUserStorage";
 
 const UserLoginForm = () => {
+  const dispatch = useDispatch();
   const [userInvalid, setUserInvalid] = useState(false);
 
   const navigate = useNavigate();
@@ -33,7 +35,6 @@ const UserLoginForm = () => {
         "Must Contain 8 Characters, One Uppercase"
       ),
   });
-  const { setUserInStorage } = useUserStorage();
 
   const formik = useFormik({
     initialValues: {
@@ -49,7 +50,7 @@ const UserLoginForm = () => {
 
       const { data } = await loginApiUser(value);
       if (data.ok === true) {
-        setUserInStorage(data);
+        dispatch(setUserData(data))
         navigate("/dashboard");
       }
       if (data.ok === false) {

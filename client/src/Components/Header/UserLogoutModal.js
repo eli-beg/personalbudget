@@ -7,7 +7,8 @@ import {
   Typography,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import useUserStorage from "../../hooks/useUserStorage";
+import { useDispatch } from 'react-redux'
+import { destroyUserData } from "../../App/auth/authSlice";
 
 const UserLogoutModal = ({
   openLogoutModal,
@@ -15,10 +16,11 @@ const UserLogoutModal = ({
   handleCloseMenu,
 }) => {
   const navigate = useNavigate();
-  const { deleteUserInStorage } = useUserStorage();
+  const dispatch = useDispatch()
 
   const handleLogoutUser = () => {
-    deleteUserInStorage();
+    
+   dispatch(destroyUserData())
     navigate(`/welcome-screen`);
   };
 
